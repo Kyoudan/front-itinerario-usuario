@@ -38,8 +38,8 @@ export const AppThemeProvider = ({ children }: IProps) => {
   }, []);
 
   const theme = useMemo(() => {
-    if (themeName === "light") return LightTheme;
-    return DarkTheme;
+    if (themeName === "light") return  LightTheme;
+    return  DarkTheme;
   }, [themeName]);
 
   useEffect(() => {

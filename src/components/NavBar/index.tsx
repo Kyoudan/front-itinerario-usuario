@@ -17,7 +17,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 
 
-
 export const NavBar = () => {
   const [isDrawer, setIsDrawer] = useState<boolean>(false);
   const Search = styled("div")(({ theme }) => ({
