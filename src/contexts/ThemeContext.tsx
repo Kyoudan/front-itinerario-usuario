@@ -10,7 +10,6 @@ import {
 } from "react";
 import { LightTheme } from "../themes/LightTheme";
 import { DarkTheme } from "../themes/DarkTheme";
-import Cookies from "js-cookie";
 
 interface IThemeContextData {
   themeName: "light" | "dark";
@@ -28,7 +27,13 @@ export const useAppThemeContext = () => {
 };
 
 export const AppThemeProvider = ({ children }: IProps) => {
-  const [themeName, setThemeName] = useState<"light" | "dark">("light");
+  const [themeName, setThemeName] = useState<"light" | "dark">(
+    (localStorage.getItem("theme") &&
+      localStorage.getItem("theme") === "dark") ||
+      localStorage.getItem("theme") === "light"
+      ? (localStorage.getItem("theme") as "light" | "dark")
+      : "light"
+  );
 
   const toggleTheme = useCallback(() => {
     setThemeName((prevState) => {
@@ -38,14 +43,13 @@ export const AppThemeProvider = ({ children }: IProps) => {
   }, []);
 
   const theme = useMemo(() => {
-    if (themeName === "light") return  LightTheme;
-    return  DarkTheme;
+    if (themeName === "light") return LightTheme;
+    return DarkTheme;
   }, [themeName]);
 
   useEffect(() => {
     localStorage.setItem("theme", themeName);
   }, [themeName]);
-
   return (
     <ThemeContext.Provider value={{ themeName, toggleTheme }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
