@@ -2,12 +2,10 @@ import * as S from "./styles";
 import { useState } from "react";
 import { DrawerComponent } from "./components/Drawer";
 import {
-  ThemeProvider,
   InputBase,
   Toolbar,
   IconButton,
   Typography,
-  createTheme,
   AppBar,
   Box,
   Button,
@@ -17,6 +15,8 @@ import {
 
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+
+
 
 export const NavBar = () => {
   const [isDrawer, setIsDrawer] = useState<boolean>(false);
@@ -61,36 +61,11 @@ export const NavBar = () => {
       },
     },
   }));
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#c2c2c2",
-      },
-      action: {
-        disabled: "#494949",
-        disabledOpacity: 0,
-        disabledBackground: "#c2c2c2",
-      },
-    },
-  });
-
-  const login = createTheme({
-    palette: {
-      primary: {
-        main: "#c2c2c2",
-      },
-      action: {
-        disabled: "#494949",
-        disabledOpacity: 0,
-        disabledBackground: "#c2c2c2",
-      },
-    },
-  });
 
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ backgroundColor: "#a60202" }}>
+        <AppBar position="static">
           <Toolbar>
             <S.styledNavBarRight>
               <IconButton
@@ -137,33 +112,20 @@ export const NavBar = () => {
                 />
               </Search>
 
-              <ThemeProvider theme={login}>
-                <Button
-                  variant="outlined"
-                  sx={{
-                    color: "#fff",
-                    border: "1px solid #fff",
-                  }}
-                >
-                  <Typography sx={{ fontFamily: "Montserrat" }}>
-                    login
-                  </Typography>
-                </Button>
-              </ThemeProvider>
+              <Button
+                variant="outlined"
+                sx={{
+                  color: "#fff",
+                }}
+              >
+                <Typography sx={{ fontFamily: "Montserrat" }}>login</Typography>
+              </Button>
 
-              <ThemeProvider theme={theme}>
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "#fff",
-                    color: "#a60202",
-                  }}
-                >
-                  <Typography sx={{ fontFamily: "Montserrat" }}>
-                    Criar conta
-                  </Typography>
-                </Button>
-              </ThemeProvider>
+              <Button variant="Claro" color="primary">
+                <Typography sx={{ fontFamily: "Montserrat" }}>
+                  Criar conta
+                </Typography>
+              </Button>
             </Box>
           </Toolbar>
         </AppBar>
