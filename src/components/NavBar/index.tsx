@@ -140,7 +140,10 @@ export const NavBar = () => {
               <ThemeProvider theme={login}>
                 <Button
                   variant="outlined"
-                  sx={{ color: "#fff", border: "1px solid #fff" }}
+                  sx={{
+                    color: "#fff",
+                    border: "1px solid #fff",
+                  }}
                 >
                   <Typography sx={{ fontFamily: "Montserrat" }}>
                     login
@@ -151,7 +154,10 @@ export const NavBar = () => {
               <ThemeProvider theme={theme}>
                 <Button
                   variant="contained"
-                  sx={{ backgroundColor: "#fff", color: "#a60202" }}
+                  sx={{
+                    backgroundColor: "#fff",
+                    color: "#a60202",
+                  }}
                 >
                   <Typography sx={{ fontFamily: "Montserrat" }}>
                     Criar conta
