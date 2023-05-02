@@ -15,10 +15,11 @@ import {
 
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-
+import { useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
   const [isDrawer, setIsDrawer] = useState<boolean>(false);
+  const navigate = useNavigate();
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -116,11 +117,16 @@ export const NavBar = () => {
                 sx={{
                   color: "#fff",
                 }}
+                onClick={() => navigate("/login")}
               >
                 <Typography sx={{ fontFamily: "Montserrat" }}>login</Typography>
               </Button>
 
-              <Button variant="Claro" color="primary">
+              <Button
+                variant="Claro"
+                color="primary"
+                onClick={() => navigate("/register")}
+              >
                 <Typography sx={{ fontFamily: "Montserrat" }}>
                   Criar conta
                 </Typography>
