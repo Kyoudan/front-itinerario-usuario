@@ -16,6 +16,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
 import { useEffect, useState } from "react";
+import { AiFillWarning } from "react-icons/ai";
 import { api } from "../../api/api";
 
 export const Register = () => {
@@ -25,6 +26,9 @@ export const Register = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [exitAnimation, setExitAnimation] = useState<string>("");
+  const [exitButtons, setExitButtons] = useState<string>("");
+  const [hideLogin, setHideLogin] = useState<boolean>(false);
   const { themeName, toggleTheme } = useAppThemeContext();
   const navigate = useNavigate();
 
@@ -101,11 +105,6 @@ export const Register = () => {
               color: themeName === "dark" ? "#afaeae" : "#666666",
             },
           },
-          focused: {
-            color: themeName === "dark" ? "#afaeae" : "#666666",
-            fontWeight: 700,
-            fontFamily: "Montserrat",
-          },
         },
       },
     },
@@ -147,6 +146,11 @@ export const Register = () => {
         password,
       });
       setLoading(false);
+      setExitAnimation("animationExit");
+      setExitButtons("animationExitButtons");
+      setTimeout(() => {
+        setHideLogin(true);
+      }, 2500);
     } catch (err: any) {
       console.log(err);
       setLoading(false);
@@ -159,114 +163,175 @@ export const Register = () => {
 
   return (
     <S.styledDiv>
-      <S.styledThemeArea>
-        <S.styledButtonTheme onClick={handleToggleTheme} theme={themeName}>
-          {themeName === "dark" ? <RiMoonClearFill /> : <BsFillSunFill />}
-        </S.styledButtonTheme>
-      </S.styledThemeArea>
-      <S.styledBackArea theme={themeName}>
-        <S.styledButtonBack theme={themeName} onClick={() => navigate("/")}>
-          <FaArrowLeft />
-        </S.styledButtonBack>
-      </S.styledBackArea>
-      <S.styledLeft theme={themeName}>
-        {" "}
-        <Typography
-          sx={{
-            fontSize: "3.5em",
-            fontFamily: "Signika, sans-serif",
-            textAlign: "center",
-            color: "red",
-            maxWidth: "400px",
-            lineHeight: "50px",
-            cursor: "default",
-          }}
-        >
-          SE <strong style={{ fontWeight: 800, color: "#a60303" }}>LIGA</strong>{" "}
-          NA{" "}
-          <strong style={{ fontWeight: 800, color: "#a60303" }}>
-            {" "}
-            MIDIA!!
-          </strong>
-        </Typography>
-        <ThemeProvider theme={inputTheme}>
-          <TextField
-            label="Nome"
-            variant="outlined"
-            sx={{ width: "90%" }}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <TextField
-            label="Email"
-            variant="outlined"
-            sx={{ width: "90%" }}
-            color="primary"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextField
-            label="Senha"
-            variant="outlined"
-            sx={{ width: "90%" }}
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-
-          <TextField
-            label="Confirme sua senha"
-            variant="outlined"
-            sx={{ width: "90%" }}
-            type="password"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </ThemeProvider>
-        {alert && (
-          <Alert severity="error" sx={{ width: "83%" }}>
-            {alert}
-          </Alert>
-        )}
-        <ThemeProvider theme={buttonTheme}>
-          {loading ? (
-            <PropagateLoader
-              color={themeName === "dark" ? "#fff" : "#a60303"}
-              speedMultiplier={0.8}
-              style={{
-                border: "1px solid #a60303",
-                width: "90%",
-                height: "45px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                borderRadius: "5px",
-              }}
-            />
-          ) : (
-            <Button
-              sx={{
-                width: "90%",
-                height: "45px",
-                fontSize: "1.3em",
-                fontFamily: "Montserrat",
-              }}
-              variant="contained"
-              onClick={CreateUser}
+      {!hideLogin && (
+        <>
+          <S.styledThemeArea>
+            <S.styledButtonTheme
+              onClick={handleToggleTheme}
+              theme={themeName}
+              exitAnimation={exitButtons}
             >
-              Criar conta
-            </Button>
+              {themeName === "dark" ? <RiMoonClearFill /> : <BsFillSunFill />}
+            </S.styledButtonTheme>
+          </S.styledThemeArea>
+          <S.styledBackArea theme={themeName}>
+            <S.styledButtonBack
+              theme={themeName}
+              onClick={() => navigate("/")}
+              exitAnimation={exitButtons}
+            >
+              <FaArrowLeft />
+            </S.styledButtonBack>
+          </S.styledBackArea>
+        </>
+      )}
+      {!hideLogin ? (
+        <S.styledLeft theme={themeName} exitAnimation={exitAnimation}>
+          {" "}
+          <Typography
+            sx={{
+              fontSize: "3.5em",
+              fontFamily: "Signika, sans-serif",
+              textAlign: "center",
+              color: "red",
+              maxWidth: "400px",
+              lineHeight: "50px",
+              cursor: "default",
+            }}
+          >
+            SE{" "}
+            <strong style={{ fontWeight: 800, color: "#a60303" }}>LIGA</strong>{" "}
+            NA{" "}
+            <strong style={{ fontWeight: 800, color: "#a60303" }}>
+              {" "}
+              MIDIA!!
+            </strong>
+          </Typography>
+          <ThemeProvider theme={inputTheme}>
+            <TextField
+              label="Nome"
+              variant="outlined"
+              sx={{ width: "90%" }}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <TextField
+              label="Email"
+              variant="outlined"
+              sx={{ width: "90%" }}
+              color="primary"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <TextField
+              label="Senha"
+              variant="outlined"
+              sx={{ width: "90%" }}
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <TextField
+              label="Confirme sua senha"
+              variant="outlined"
+              sx={{ width: "90%" }}
+              type="password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </ThemeProvider>
+          {alert && (
+            <Alert severity="error" sx={{ width: "83%" }}>
+              {alert}
+            </Alert>
           )}
-        </ThemeProvider>
-        <Button
-          sx={{
-            height: "45px",
-            fontSize: "1em",
-            fontFamily: "Montserrat",
-          }}
-          variant="text"
-          onClick={() => navigate("/login")}
-        >
-          Entrar
-        </Button>
-      </S.styledLeft>
+          <ThemeProvider theme={buttonTheme}>
+            {loading ? (
+              <PropagateLoader
+                color={themeName === "dark" ? "#fff" : "#a60303"}
+                speedMultiplier={0.8}
+                style={{
+                  border: "1px solid #a60303",
+                  width: "90%",
+                  height: "45px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  borderRadius: "5px",
+                }}
+              />
+            ) : (
+              <Button
+                sx={{
+                  width: "90%",
+                  height: "45px",
+                  fontSize: "1.3em",
+                  fontFamily: "Montserrat",
+                }}
+                variant="contained"
+                onClick={CreateUser}
+              >
+                Criar conta
+              </Button>
+            )}
+          </ThemeProvider>
+          <Button
+            sx={{
+              height: "45px",
+              fontSize: "1em",
+              fontFamily: "Montserrat",
+            }}
+            variant="text"
+            onClick={() => navigate("/login")}
+          >
+            Entrar
+          </Button>
+        </S.styledLeft>
+      ) : (
+        <S.styledWarningArea>
+          <div className="circle-wrapper">
+            <div className="warning circle"></div>
+            <div className="icon">
+              <AiFillWarning />
+            </div>
+          </div>
+          <Typography
+            sx={{
+              fontFamily: "Montserrat",
+              fontSize: "2em",
+              color: "#fff",
+              textAlign: "center",
+            }}
+            className="entryTypography"
+          >
+            Ative sua conta!!
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Montserrat",
+              fontSize: "0.9em",
+              color: "#fff",
+              textAlign: "center",
+            }}
+            className="entryTypography"
+          >
+            Email enviado para: {email}
+          </Typography>
+          <Button
+            sx={{
+              height: "40px",
+              fontSize: "1em",
+              fontFamily: "Montserrat",
+              color: "#fff",
+              border: "1px solid #fff",
+              marginTop: "10px",
+              backgroundColor: "#a60303"
+            }}
+            variant="text"
+            onClick={() => navigate("/login")}
+          >
+            Entrar
+          </Button>
+        </S.styledWarningArea>
+      )}
 
       <S.stlyedRight image={Painel}></S.stlyedRight>
     </S.styledDiv>

@@ -1,5 +1,11 @@
 import styled from "@emotion/styled";
-import { IStyledLeft, IStyledRight, IStyledTheme } from "./types";
+import {
+  IStyledBackArea,
+  IStyledLeft,
+  IStyledRight,
+  IStyledTheme,
+  IStyledThemeArea,
+} from "./types";
 
 export const styledDiv = styled.div`
   width: 100%;
@@ -26,21 +32,27 @@ export const styledLeft = styled.div<IStyledLeft>`
   row-gap: 10px;
   z-index: 2;
   background-color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
+  animation: ${({ exitAnimation }) =>
+    exitAnimation ? `${exitAnimation} 2s ease forwards` : ""};
 
-  fieldset {
-    border: "1px solid red";
+  @keyframes animationExit {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-500px);
+    }
   }
 `;
 
-export const styledThemeArea = styled.div`
+export const styledThemeArea = styled.div<IStyledThemeArea>`
   position: absolute;
   bottom: 10px;
   left: 10px;
   z-index: 3;
-
   cursor: pointer;
 `;
-export const styledBackArea = styled.div`
+export const styledBackArea = styled.div<IStyledBackArea>`
   position: absolute;
   top: 10px;
   left: 10px;
@@ -72,6 +84,18 @@ export const styledButtonTheme = styled.button<IStyledTheme>`
       theme === "dark" ? "#fff" : "transparent"};
     color: #a60303;
   }
+
+  animation: ${({ exitAnimation }) =>
+    exitAnimation ? `${exitAnimation} 2s ease forwards` : ""};
+
+  @keyframes animationExitButtons {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 `;
 
 export const styledButtonBack = styled.button<IStyledTheme>`
@@ -95,5 +119,108 @@ export const styledButtonBack = styled.button<IStyledTheme>`
     transition: 0.5s ease;
     color: #a60303;
     transform: translateX(-10px);
+  }
+  animation: ${({ exitAnimation }) =>
+    exitAnimation ? `${exitAnimation} 2s ease forwards` : ""};
+
+  @keyframes animationExitButtons {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+`;
+
+export const styledWarningArea = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 100;
+  position: relative;
+
+  .entryTypography {
+    opacity: 0;
+    letter-spacing: -15px;
+    animation: entryTypography 0.5s ease forwards;
+  }
+
+  .circle-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 10px;
+    animation: entryWarning 1s ease forwards;
+    transform: scale(0);
+  }
+
+  .icon {
+    position: absolute;
+    color: #fff;
+    font-size: 55px;
+    top: 55px;
+    left: 55px;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+  }
+
+  .circle {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    padding: 2.5px;
+    background-clip: content-box;
+    animation: spin 10s linear infinite;
+  }
+
+  .circle-wrapper:active .circle {
+    animation: spin 2s linear infinite;
+  }
+
+  .warning {
+    background-color: #a60303;
+    border: 2.5px dashed #fff;
+  }
+
+  .page-wrapper {
+    height: 100vh;
+    background-color: #a60303;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @keyframes entryWarning {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes entryTypography {
+    0% {
+      opacity: 0;
+      letter-spacing: -9px;
+    }
+    100% {
+      opacity: 1;
+      letter-spacing: 0px;
+    }
+  }
+
+  @keyframes spin {
+    100% {
+      transform: rotateZ(360deg);
+    }
   }
 `;
