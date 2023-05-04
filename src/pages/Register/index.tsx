@@ -150,7 +150,7 @@ export const Register = () => {
       setExitButtons("animationExitButtons");
       setTimeout(() => {
         setHideLogin(true);
-      }, 2500);
+      }, 1000);
     } catch (err: any) {
       console.log(err);
       setLoading(false);
@@ -211,20 +211,20 @@ export const Register = () => {
             <TextField
               label="Nome"
               variant="outlined"
-              sx={{ width: "90%" }}
+              sx={{ width: "80%" }}
               onChange={(e) => setName(e.target.value)}
             />
             <TextField
               label="Email"
               variant="outlined"
-              sx={{ width: "90%" }}
+              sx={{ width: "80%" }}
               color="primary"
               onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               label="Senha"
               variant="outlined"
-              sx={{ width: "90%" }}
+              sx={{ width: "80%" }}
               type="password"
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -232,13 +232,13 @@ export const Register = () => {
             <TextField
               label="Confirme sua senha"
               variant="outlined"
-              sx={{ width: "90%" }}
+              sx={{ width: "80%" }}
               type="password"
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </ThemeProvider>
           {alert && (
-            <Alert severity="error" sx={{ width: "83%" }}>
+            <Alert severity="error" sx={{ width: "75%" }}>
               {alert}
             </Alert>
           )}
@@ -249,7 +249,7 @@ export const Register = () => {
                 speedMultiplier={0.8}
                 style={{
                   border: "1px solid #a60303",
-                  width: "90%",
+                  width: "80%",
                   height: "45px",
                   display: "flex",
                   alignItems: "center",
@@ -261,7 +261,7 @@ export const Register = () => {
             ) : (
               <Button
                 sx={{
-                  width: "90%",
+                  width: "80%",
                   height: "45px",
                   fontSize: "1.3em",
                   fontFamily: "Montserrat",

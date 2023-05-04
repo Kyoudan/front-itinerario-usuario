@@ -24,7 +24,7 @@ export const stlyedRight = styled.div<IStyledRight>`
 `;
 
 export const styledLeft = styled.div<IStyledLeft>`
-  width: 500px;
+  width: 700px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,14 +33,14 @@ export const styledLeft = styled.div<IStyledLeft>`
   z-index: 2;
   background-color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
   animation: ${({ exitAnimation }) =>
-    exitAnimation ? `${exitAnimation} 2s ease forwards` : ""};
+    exitAnimation ? `${exitAnimation} 1s ease forwards` : ""};
 
   @keyframes animationExit {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-500px);
+      transform: translateX(-700px);
     }
   }
 `;
@@ -86,7 +86,7 @@ export const styledButtonTheme = styled.button<IStyledTheme>`
   }
 
   animation: ${({ exitAnimation }) =>
-    exitAnimation ? `${exitAnimation} 2s ease forwards` : ""};
+    exitAnimation ? `${exitAnimation} 1s ease forwards` : ""};
 
   @keyframes animationExitButtons {
     0% {
@@ -121,7 +121,7 @@ export const styledButtonBack = styled.button<IStyledTheme>`
     transform: translateX(-10px);
   }
   animation: ${({ exitAnimation }) =>
-    exitAnimation ? `${exitAnimation} 2s ease forwards` : ""};
+    exitAnimation ? `${exitAnimation} 1s ease forwards` : ""};
 
   @keyframes animationExitButtons {
     0% {

@@ -41,7 +41,8 @@ export const ActivateAccount = () => {
 
       return () => clearInterval(timerId);
     }
-  }, [timeLeft]);
+  }, [timeLeft, message]);
+
 
   return (
     <>
