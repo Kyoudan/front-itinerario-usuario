@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Notable&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap");
 html,
 body,
 div,
@@ -127,4 +127,19 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+::-webkit-scrollbar {
+  margin-right: 3px;
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a60203;
+  border-radius: 20px;
+  border: 0.3px solid #6b0203;
 }

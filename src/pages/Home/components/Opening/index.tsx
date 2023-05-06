@@ -28,8 +28,8 @@ export const Opening = () => {
         <S.styledTitleLogoDistorted theme={themeName}>
           A
         </S.styledTitleLogoDistorted>
-        <S.fundoFita src={img} />
       </S.styledDivBottom>
+      <S.fundoFita src={img} />
     </S.styledDiv>
   );
 };

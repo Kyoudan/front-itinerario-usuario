@@ -1,5 +1,5 @@
 import * as S from "./styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DrawerComponent } from "./components/Drawer";
 import {
   InputBase,
@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
   const [isDrawer, setIsDrawer] = useState<boolean>(false);
+  const [width, setWidth] = useState<number>(window.innerWidth);
   const navigate = useNavigate();
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -66,40 +67,53 @@ export const NavBar = () => {
     <>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
-          <Toolbar>
+          <Toolbar
+            sx={{ flexDirection: width < 605 ? "column-reverse" : "row" }}
+          >
             <S.styledNavBarRight>
               <IconButton
                 size="large"
                 edge="start"
                 color="inherit"
                 aria-label="open drawer"
-                sx={{ mr: 2 }}
+                sx={{ mr: width < 605 ? "2 " : "0" }}
                 onClick={() => setIsDrawer(true)}
               >
-                <MenuIcon />
+                <MenuIcon
+                  sx={{
+                    fontSize: width < 605 ? "1.2em" : "1em",
+                    border: width < 605 ? "1px solid #fff" : "0px",
+                    padding: width < 605 ? "5px" : "0px",
+                    borderRadius: width < 605 ? "50%" : "0",
+                  }}
+                />
               </IconButton>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{
-                  flexGrow: 1,
-                  display: {
-                    fontFamily: "Montserrat",
-                  },
-                }}
-              >
-                Se liga na mídia
-              </Typography>
+              {width > 721 && (
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{
+                    flexGrow: 1,
+                    display: {
+                      fontFamily: "Montserrat",
+                    },
+                  }}
+                >
+                  Se liga na mídia
+                </Typography>
+              )}
             </S.styledNavBarRight>
 
             <Box
               sx={{
-                width: "50%",
+                width: width > 721 ? "65%" : "92%",
                 display: "flex",
-                flexWrap: "wrap",
                 columnGap: "10px",
+                rowGap: "10px",
                 justifyContent: "end",
+                flexDirection: width < 605 ? "column" : "row",
+                marginTop: width < 605 ? "10px" : "0px",
               }}
             >
               <Search>
