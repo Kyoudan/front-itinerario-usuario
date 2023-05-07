@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Step,
@@ -14,20 +15,42 @@ import {
 import { useAppThemeContext } from "../../../../contexts/ThemeContext";
 import * as S from "./style";
 import { AiOutlineSearch } from "react-icons/ai";
-import { useState } from "react";
+import { KeyboardEventHandler, useState } from "react";
+import { api } from "../../../../api/api";
+import { IPost, IPostAxios } from "./types";
 
 export const SearchPosts = () => {
   const { themeName } = useAppThemeContext();
   const [activeStep, setActiveStep] = useState<number>(0);
   const [isSearch, setIsSearch] = useState<boolean>(false);
   const [search, setSearch] = useState<string>();
+  const [post, setPost] = useState<IPost[]>();
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => {
+      return prevActiveStep + 1;
+    });
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => {
+      return prevActiveStep - 1;
+    });
+  };
+
+  const handleFindPost = async (e: any) => {
+    if (e.keyCode == 13 && search) {
+      try {
+        const result: IPostAxios = await api.get(
+          `/post?find=${search}&limit=1`
+        );
+        setIsSearch(true);
+        setPost(result.data.data);
+        console.log(result);
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   const inputTheme = createTheme({
@@ -263,6 +286,7 @@ export const SearchPosts = () => {
                       sx={{ width: "500px" }}
                       placeholder="Digite 'dignidade intima'"
                       onChange={(e) => setSearch(e.target.value)}
+                      onKeyUp={(e) => handleFindPost(e)}
                     ></TextField>
                   </ThemeProvider>
                   <Typography sx={styledTypographyDefault}>
@@ -284,10 +308,17 @@ export const SearchPosts = () => {
         </Box>
       </S.styledLeft>
       <S.styledRight>
-        <Box sx={styledBox}>
-          <AiOutlineSearch className="iconSearch" />
-          <S.styledRightAfter></S.styledRightAfter>
-        </Box>
+        {post?.length == 1 && (
+          <Box sx={styledBox}>
+            <AiOutlineSearch className="iconSearch" />
+            <S.styledRightAfter></S.styledRightAfter>
+          </Box>
+        )}
+        {isSearch == true && post?.length == 0 && (
+          <Alert sx={titleStep} variant="outlined" severity="error">
+            Não encontrado!!
+          </Alert>
+        )}
       </S.styledRight>
     </S.styledDiv>
   );
