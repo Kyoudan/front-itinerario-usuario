@@ -1,5 +1,10 @@
 import {
   Box,
+  Button,
+  Step,
+  StepContent,
+  StepLabel,
+  Stepper,
   TextField,
   ThemeProvider,
   Typography,
@@ -9,9 +14,21 @@ import {
 import { useAppThemeContext } from "../../../../contexts/ThemeContext";
 import * as S from "./style";
 import { AiOutlineSearch } from "react-icons/ai";
+import { useState } from "react";
 
 export const SearchPosts = () => {
   const { themeName } = useAppThemeContext();
+  const [activeStep, setActiveStep] = useState<number>(0);
+  const [isSearch, setIsSearch] = useState<boolean>(false);
+  const [search, setSearch] = useState<string>();
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
 
   const inputTheme = createTheme({
     palette: {
@@ -83,7 +100,7 @@ export const SearchPosts = () => {
     fontSize: "6em",
     fontFamily: "Bebas Neue",
     color: "transparent",
-    WebkitTextStroke: themeName === "dark" ? ".2px #ffffff" : "1px #000000",
+    WebkitTextStroke: themeName === "dark" ? ".6px #ffffff" : "1px #000000",
     textStroke: themeName === "dark" ? "1px #fff" : "1px #000",
     lineHeight: "70px",
     zIndex: 1,
@@ -95,7 +112,7 @@ export const SearchPosts = () => {
   const styledTypographyDefault = {
     fontSize: "1.3em",
     fontFamily: "Montserrat",
-    color: "#494949",
+    color: themeName === "dark" ? "#bababa" : "#494949",
     lineHeight: "20px",
     zIndex: 1,
     cursor: "default",
@@ -106,26 +123,165 @@ export const SearchPosts = () => {
   const styledBox = {
     width: "90%",
     height: "450px",
-    backgroundColor: "#1c1c1c",
+    backgroundColor: themeName === "dark" ? "#fff" : "#1c1c1c",
     borderRadius: "10px",
     position: "relative",
   };
 
+  const titleStep = {
+    fontSize: "1.5em",
+    fontFamily: "Montserrat",
+    color: "#A60303",
+    lineHeight: "20px",
+    zIndex: 1,
+    cursor: "default",
+    userSelect: "none",
+    maxWidth: "500px",
+  };
+
+  const textStep = {
+    fontSize: "1em",
+    fontFamily: "Montserrat",
+    color: themeName === "dark" ? "#fff" : "#1c1c1c",
+    lineHeight: "20px",
+    zIndex: 1,
+    cursor: "default",
+    userSelect: "none",
+    maxWidth: "500px",
+  };
+
+  const buttonStep = {
+    fontSize: "1em",
+    fontFamily: "Montserrat",
+    lineHeight: "20px",
+    zIndex: 1,
+    userSelect: "none",
+    maxWidth: "500px",
+  };
+
+  const buttonTheme = createTheme({
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            color: "#fff",
+            backgroundColor: "#A60303",
+          },
+          contained: {
+            "&:hover": {
+              backgroundColor: "transparent",
+              color: themeName === "dark" ? "#fff" : "#A60303",
+              border:
+                themeName === "light"
+                  ? "1px solid #A60303"
+                  : "1px solid #A60303",
+            },
+          },
+        },
+      },
+    },
+  });
+
   return (
-    <S.styledDiv>
+    <S.styledDiv theme={themeName}>
       <S.styledLeft>
-        <Typography sx={styledTypography}>EXPERIMENTE</Typography>
-        <ThemeProvider theme={inputTheme}>
-          <TextField
-            label="Pesquisar"
-            sx={{ width: "500px" }}
-            placeholder="Digite 'dignidade intima'"
-          ></TextField>
-        </ThemeProvider>
-        <Typography sx={styledTypographyDefault}>
-          Nós produzimos varios conteudos durante os bimestres, que tal
-          experimentar um?
-        </Typography>
+        <Box sx={{ width: "500px" }}>
+          <Stepper activeStep={activeStep} orientation="vertical">
+            <Step>
+              <StepLabel>
+                <Typography sx={titleStep}>Introdução</Typography>
+              </StepLabel>
+
+              <StepContent>
+                <Typography sx={textStep}>
+                  Descubra um pouco mais sobre nosso itinerario!!!
+                </Typography>
+                <Box sx={{ mb: 2 }}>
+                  <div>
+                    <ThemeProvider theme={buttonTheme}>
+                      <Button
+                        variant="contained"
+                        sx={{ mt: 1, mr: 1 }}
+                        onClick={handleNext}
+                      >
+                        <Typography sx={buttonStep}>Avançar</Typography>
+                      </Button>
+                    </ThemeProvider>
+                  </div>
+                </Box>
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel>
+                <Typography sx={titleStep}>Desenvolvimento</Typography>
+              </StepLabel>
+
+              <StepContent>
+                <Typography sx={textStep}>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Totam ullam nisi iusto, quae facilis, magnam pariatur, nostrum
+                  impedit optio eum iure sit officia quas accusantium dicta
+                  nobis doloremque distinctio. Possimus!
+                </Typography>
+                <Box sx={{ mb: 2 }}>
+                  <div>
+                    <ThemeProvider theme={buttonTheme}>
+                      <Button
+                        variant="contained"
+                        sx={{ mt: 1, mr: 1 }}
+                        onClick={handleNext}
+                      >
+                        <Typography sx={buttonStep}>Avançar</Typography>
+                      </Button>
+                    </ThemeProvider>
+                    <Button sx={{ mt: 1, mr: 1 }} onClick={handleBack}>
+                      <Typography sx={buttonStep}>Voltar</Typography>
+                    </Button>
+                  </div>
+                </Box>
+              </StepContent>
+            </Step>
+
+            <Step>
+              <StepLabel>
+                <Typography sx={titleStep}>??</Typography>
+              </StepLabel>
+
+              <StepContent>
+                <Box
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    rowGap: "20px",
+                  }}
+                >
+                  <Typography sx={styledTypography}>EXPERIMENTE</Typography>
+                  <ThemeProvider theme={inputTheme}>
+                    <TextField
+                      label="Pesquisar"
+                      sx={{ width: "500px" }}
+                      placeholder="Digite 'dignidade intima'"
+                      onChange={(e) => setSearch(e.target.value)}
+                    ></TextField>
+                  </ThemeProvider>
+                  <Typography sx={styledTypographyDefault}>
+                    Nós produzimos varios conteudos durante os bimestres, que
+                    tal experimentar um?
+                  </Typography>
+                </Box>
+
+                <Box sx={{ mb: 2 }}>
+                  <div>
+                    <Button sx={{ mt: 1, mr: 1 }} onClick={handleBack}>
+                      <Typography sx={buttonStep}>Voltar</Typography>
+                    </Button>
+                  </div>
+                </Box>
+              </StepContent>
+            </Step>
+          </Stepper>
+        </Box>
       </S.styledLeft>
       <S.styledRight>
         <Box sx={styledBox}>
