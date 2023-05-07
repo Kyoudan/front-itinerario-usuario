@@ -3,7 +3,7 @@ import { IStyledDiv, IStyledPadding, IStyledStrings } from "./types";
 
 export const styledDiv = styled.div<IStyledDiv>`
   width: 100%;
-  height: 906px;
+  height: 1100px;
   background-color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
   display: flex;
   align-items: flex-start;
@@ -11,7 +11,7 @@ export const styledDiv = styled.div<IStyledDiv>`
   flex-direction: column;
   cursor: default;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 `;
 
 export const styledDivTop = styled.div`
@@ -236,9 +236,9 @@ export const padding = styled.div<IStyledPadding>`
 
 export const fundoFita = styled.img`
   width: 1920px;
-  height: 1080;
+  height: 1080px;
   position: absolute;
-  top: 0;
+  top: 20px;
   z-index: 1;
   opacity: 1;
 `;
