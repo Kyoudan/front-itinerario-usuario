@@ -14,7 +14,7 @@ export const styledDiv = styled.div<IStyledDiv>`
   overflow-x: hidden;
   
   @media (max-width: 690px) {
-    height: 600px;
+    height: 800px;
   }
 `;
 
@@ -246,6 +246,7 @@ export const fundoFita = styled.img`
   opacity: 1;
 
   @media (max-width: 680px) {
-    height: 650px;
+    width: 1020px;
+    height: 780px;
   }
 `;

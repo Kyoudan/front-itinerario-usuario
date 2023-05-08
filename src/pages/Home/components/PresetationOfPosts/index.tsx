@@ -35,22 +35,29 @@ export const PresetationOfPosts = () => {
   };
 
   const styledTypographyBorder = {
-    fontSize: width > 690 ? "31em" : "8em",
     fontFamily: "Bebas Neue",
     color: "transparent",
-    WebkitTextStroke: width > 690 ? themeName === "dark" ? ".2px #ffffff" : "1px #000000" : themeName === "dark" ? ".5px #ffffff" : "1px #000000",
+    WebkitTextStroke:
+      width > 690
+        ? themeName === "dark"
+          ? ".2px #ffffff"
+          : "1px #000000"
+        : themeName === "dark"
+        ? ".5px #ffffff"
+        : "1px #000000",
     textStroke: themeName === "dark" ? "1px #fff" : "1px #000",
     lineHeight: "70px",
-    zIndex: 4,
+    zIndex: 2,
     cursor: "default",
     userSelect: "none",
-    
   };
 
   return (
     <S.styledDiv theme={themeName}>
       <S.styledLeft /* style={{ paddingLeft: "100px" }} */>
-        <Typography sx={styledTypographyBorder}>EXPLORE</Typography>
+        <Typography sx={styledTypographyBorder} className="text">
+          EXPLORE
+        </Typography>
       </S.styledLeft>
       <S.styledImg src={img} />
       <S.shadowImg theme={themeName} />

@@ -209,7 +209,7 @@ export const SearchPosts = () => {
   return (
     <S.styledDiv theme={themeName}>
       <S.styledLeft>
-        <Box sx={{ width: width > 690 ? "500px" : "300px"}}>
+        <Box className="Box">
           <Stepper activeStep={activeStep} orientation="vertical">
             <Step>
               <StepLabel>
@@ -284,7 +284,7 @@ export const SearchPosts = () => {
                   <ThemeProvider theme={inputTheme}>
                     <TextField
                       label="Pesquisar"
-                      sx={{ width: width > 690 ? "500px" : "250px" }}
+                      sx={{ width: width > 690 ? "500px" : "300px" }}
                       placeholder="Digite 'dignidade intima'"
                       onChange={(e) => setSearch(e.target.value)}
                       onKeyUp={(e) => handleFindPost(e)}

@@ -7,8 +7,15 @@ export const styledDiv = styled.div<IStyledDiv>`
   background-color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
   display: flex;
   flex-direction: row;
-  
-  @media (max-width: 680px){
+
+  @media (max-width: 1336px) {
+    flex-direction: column;
+    height: 1000px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 680px) {
     flex-direction: column;
     height: 700px;
     align-items: center;
@@ -24,6 +31,14 @@ export const styledLeft = styled.div`
   align-items: center;
   justify-content: center;
   row-gap: 10px;
+
+  .Box {
+    width: 500px;
+
+    @media (max-width: 547px) {
+      width: 350px;
+    }
+  }
 `;
 
 export const styledRight = styled.div`
