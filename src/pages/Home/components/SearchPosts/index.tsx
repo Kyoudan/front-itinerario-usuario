@@ -25,6 +25,7 @@ export const SearchPosts = () => {
   const [isSearch, setIsSearch] = useState<boolean>(false);
   const [search, setSearch] = useState<string>();
   const [post, setPost] = useState<IPost[]>();
+  const [width] = useState<number>(window.innerWidth);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => {
@@ -120,7 +121,7 @@ export const SearchPosts = () => {
   });
 
   const styledTypography = {
-    fontSize: "6em",
+    fontSize: width > 690 ? "6em" : "3em",
     fontFamily: "Bebas Neue",
     color: "transparent",
     WebkitTextStroke: themeName === "dark" ? ".6px #ffffff" : "1px #000000",
@@ -129,11 +130,11 @@ export const SearchPosts = () => {
     zIndex: 1,
     cursor: "default",
     userSelect: "none",
-    letterSpacing: "10px",
+    letterSpacing: width > 690 ? "10px" : "3px",
   };
 
   const styledTypographyDefault = {
-    fontSize: "1.3em",
+    fontSize: width > 690 ? "1.3em" : ".7em",
     fontFamily: "Montserrat",
     color: themeName === "dark" ? "#bababa" : "#494949",
     lineHeight: "20px",
@@ -152,7 +153,7 @@ export const SearchPosts = () => {
   };
 
   const titleStep = {
-    fontSize: "1.5em",
+    fontSize: width > 690 ? "1.5em" : ".95em",
     fontFamily: "Montserrat",
     color: "#A60303",
     lineHeight: "20px",
@@ -163,7 +164,7 @@ export const SearchPosts = () => {
   };
 
   const textStep = {
-    fontSize: "1em",
+    fontSize: width > 690 ? "1em" : ".7em",
     fontFamily: "Montserrat",
     color: themeName === "dark" ? "#fff" : "#1c1c1c",
     lineHeight: "20px",
@@ -174,7 +175,7 @@ export const SearchPosts = () => {
   };
 
   const buttonStep = {
-    fontSize: "1em",
+    fontSize: width > 690 ? "1em" : ".8em",
     fontFamily: "Montserrat",
     lineHeight: "20px",
     zIndex: 1,
@@ -208,7 +209,7 @@ export const SearchPosts = () => {
   return (
     <S.styledDiv theme={themeName}>
       <S.styledLeft>
-        <Box sx={{ width: "500px" }}>
+        <Box sx={{ width: width > 690 ? "500px" : "300px"}}>
           <Stepper activeStep={activeStep} orientation="vertical">
             <Step>
               <StepLabel>
@@ -283,7 +284,7 @@ export const SearchPosts = () => {
                   <ThemeProvider theme={inputTheme}>
                     <TextField
                       label="Pesquisar"
-                      sx={{ width: "500px" }}
+                      sx={{ width: width > 690 ? "500px" : "250px" }}
                       placeholder="Digite 'dignidade intima'"
                       onChange={(e) => setSearch(e.target.value)}
                       onKeyUp={(e) => handleFindPost(e)}

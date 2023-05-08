@@ -1,12 +1,13 @@
 import * as S from "./style";
 import Cards from "../../../../assets/Cards.png";
 import CardsClaro from "../../../../assets/Cardsclaro.png";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useAppThemeContext } from "../../../../contexts/ThemeContext";
 
 export const PresetationOfPosts = () => {
   const [img, setImg] = useState<string>();
+  const [width] = useState<number>(window.innerWidth);
   const { themeName } = useAppThemeContext();
 
   useEffect(() => {
@@ -34,15 +35,16 @@ export const PresetationOfPosts = () => {
   };
 
   const styledTypographyBorder = {
-    fontSize: "42em",
+    fontSize: width > 690 ? "31em" : "8em",
     fontFamily: "Bebas Neue",
     color: "transparent",
-    WebkitTextStroke: themeName === "dark" ? ".2px #ffffff" : "1px #000000",
+    WebkitTextStroke: width > 690 ? themeName === "dark" ? ".2px #ffffff" : "1px #000000" : themeName === "dark" ? ".5px #ffffff" : "1px #000000",
     textStroke: themeName === "dark" ? "1px #fff" : "1px #000",
     lineHeight: "70px",
-    zIndex: 1,
+    zIndex: 4,
     cursor: "default",
     userSelect: "none",
+    
   };
 
   return (

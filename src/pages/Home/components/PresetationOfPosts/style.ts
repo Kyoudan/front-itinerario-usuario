@@ -7,6 +7,10 @@ export const styledDiv = styled.div<IStyledDiv>`
   position: relative;
   overflow: hidden;
   background-color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
+  
+  @media (max-width: 680px) {
+    height: 300px;
+  }
 `;
 
 export const styledImg = styled.img`
@@ -17,6 +21,10 @@ export const styledImg = styled.img`
   right: 0;
   z-index: 2;
   user-select: none;
+  @media (max-width: 680px) {
+    width: 120%;
+    height: auto;
+  }
 `;
 
 export const shadowImg = styled.div<IStyledShadowImg>`
@@ -30,6 +38,14 @@ export const shadowImg = styled.div<IStyledShadowImg>`
       ? "inset -100px -100px 100px 60px #1c1c1c"
       : "inset -100px -100px 100px 60px #fff"};
   z-index: 3;
+  @media (max-width: 680px) {
+    width: 200vw;
+    height: 150vw;
+    box-shadow: ${({ theme }) =>
+    theme === "dark"
+      ? "inset -10px -10px 50px 60px #1c1c1c"
+      : "inset -10px -10px 50px 60px #fff"};
+  }
 `;
 
 export const styledLeft = styled.div`

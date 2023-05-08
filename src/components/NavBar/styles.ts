@@ -12,7 +12,7 @@ export const styledNavBarRight = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 725px) {
+  @media (max-width: 690px) {
     width: 8%;
   }
 `;

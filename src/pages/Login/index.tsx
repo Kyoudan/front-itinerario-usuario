@@ -27,9 +27,6 @@ export const Login = () => {
   const [hideLogin, setHideLogin] = useState<boolean>(false);
   const { themeName, toggleTheme } = useAppThemeContext();
   const navigate = useNavigate();
-
-
-
   const inputTheme = createTheme({
     palette: {
       primary: {
@@ -131,11 +128,11 @@ export const Login = () => {
         password,
       });
       setLoading(false);
-      Cookies.set("token", result.data,{
+      Cookies.set("token", result.data, {
         sameSite: "Strict",
         expires: 1,
       });
-      navigate("/")
+      navigate("/");
       setTimeout(() => {
         setHideLogin(true);
       }, 1000);
@@ -153,18 +150,12 @@ export const Login = () => {
       {!hideLogin && (
         <>
           <S.styledThemeArea>
-            <S.styledButtonTheme
-              onClick={handleToggleTheme}
-              theme={themeName}
-            >
+            <S.styledButtonTheme onClick={handleToggleTheme} theme={themeName}>
               {themeName === "dark" ? <RiMoonClearFill /> : <BsFillSunFill />}
             </S.styledButtonTheme>
           </S.styledThemeArea>
           <S.styledBackArea theme={themeName}>
-            <S.styledButtonBack
-              theme={themeName}
-              onClick={() => navigate("/")}
-            >
+            <S.styledButtonBack theme={themeName} onClick={() => navigate("/")}>
               <FaArrowLeft />
             </S.styledButtonBack>
           </S.styledBackArea>
@@ -255,7 +246,7 @@ export const Login = () => {
               color: "#fff",
               border: "1px solid #fff",
               marginTop: "10px",
-              backgroundColor: "#a60303"
+              backgroundColor: "#a60303",
             }}
             variant="text"
             onClick={() => navigate("/")}

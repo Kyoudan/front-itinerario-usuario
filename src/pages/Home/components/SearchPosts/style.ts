@@ -7,6 +7,13 @@ export const styledDiv = styled.div<IStyledDiv>`
   background-color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
   display: flex;
   flex-direction: row;
+  
+  @media (max-width: 680px){
+    flex-direction: column;
+    height: 700px;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const styledLeft = styled.div`

@@ -12,6 +12,10 @@ export const styledDiv = styled.div<IStyledDiv>`
   cursor: default;
   position: relative;
   overflow-x: hidden;
+  
+  @media (max-width: 690px) {
+    height: 600px;
+  }
 `;
 
 export const styledDivTop = styled.div`
@@ -23,6 +27,7 @@ export const styledDivTop = styled.div`
   @media (max-width: 690px) {
     align-items: center;
     justify-content: center;
+    top: -50px;
   }
 
   &::after {
@@ -54,15 +59,13 @@ export const styledDivBottom = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+  position: relative;
 
-  @media (max-width: 460px) {
+  @media (max-width: 680px) {
     align-items: center;
     justify-content: center;
-  }
-
-  @media (max-width: 690px) {
-    align-items: center;
     justify-content: center;
+    top: -50px;
   }
 `;
 
@@ -241,4 +244,8 @@ export const fundoFita = styled.img`
   top: 20px;
   z-index: 1;
   opacity: 1;
+
+  @media (max-width: 680px) {
+    height: 650px;
+  }
 `;
