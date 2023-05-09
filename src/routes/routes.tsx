@@ -11,13 +11,13 @@ export const RoutesComponent = () => {
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
+        <Route
+          path="/activateAccount/:uuid"
+          element={<ActivateAccount />}
+        ></Route>
 
         <Route element={<OutlatNavbar />}>
           <Route path="/" element={<Home />}></Route>
-          <Route
-            path="/activateAccount/:uuid"
-            element={<ActivateAccount />}
-          ></Route>
         </Route>
       </Routes>
     </BrowserRouter>
