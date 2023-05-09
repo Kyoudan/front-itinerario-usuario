@@ -31,6 +31,17 @@ export const styledImg = styled.img`
     width: 800px;
     height: 505px;
   }
+
+  @media (max-width: 567px) {
+    width: 600px;
+    height: 400px;
+  }
+
+  @media (max-width: 397px) {
+    width: 500px;
+    height: 300px;
+    bottom: 100px;
+  }
 `;
 
 export const shadowImg = styled.div<IStyledShadowImg>`
@@ -52,6 +63,9 @@ export const shadowImg = styled.div<IStyledShadowImg>`
       theme === "dark"
         ? "inset -10px -10px 50px 60px #1c1c1c"
         : "inset -10px -10px 50px 60px #fff"};
+  }
+  @media (max-width: 397px) {
+    bottom: 100px;
   }
 `;
 

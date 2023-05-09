@@ -1,5 +1,6 @@
 import {
   Alert,
+  Avatar,
   Box,
   Button,
   Step,
@@ -145,11 +146,10 @@ export const SearchPosts = () => {
   };
 
   const styledBox = {
-    width: "90%",
-    height: "450px",
     backgroundColor: themeName === "dark" ? "#fff" : "#1c1c1c",
     borderRadius: "10px",
     position: "relative",
+    padding: "30px",
   };
 
   const titleStep = {
@@ -183,6 +183,55 @@ export const SearchPosts = () => {
     maxWidth: "500px",
   };
 
+  const textBox = {
+    fontSize: "3em",
+    fontFamily: "Montserrat",
+    color: themeName === "dark" ? "#1c1c1c" : "#fff",
+    lineHeight: "50px",
+    zIndex: 1,
+    cursor: "default",
+    userSelect: "none",
+    textAlign: "center",
+  };
+
+  const styledSubBox = {
+    width: "90%",
+    backgroundColor: themeName === "dark" ? "#1c1c1c" : "#fff",
+    padding: "10px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "5px",
+    rowGap: "10px",
+  };
+
+  const styledTextSubBox = {
+    fontSize: "1.4em",
+    fontFamily: "Montserrat",
+    color: themeName === "dark" ? "#fff" : "#1c1c1c",
+    lineHeight: "40px",
+    zIndex: 1,
+    cursor: "default",
+    userSelect: "none",
+    textAlign: "justify",
+  };
+
+  const styledTextSubBoxSmall = {
+    fontSize: "1em",
+    fontFamily: "Montserrat",
+    color: themeName === "dark" ? "#fff" : "#1c1c1c",
+    lineHeight: "40px",
+    zIndex: 1,
+    cursor: "default",
+    userSelect: "none",
+    textAlign: "justify",
+    backgroundColor: themeName === "dark" ? "#494949" : "#c0c0c0" ,
+    paddingLeft: "5px",
+    paddingRight: "5px",
+    borderRadius: "5px",
+  };
+
   const buttonTheme = createTheme({
     components: {
       MuiButton: {
@@ -207,7 +256,7 @@ export const SearchPosts = () => {
   });
 
   return (
-    <S.styledDiv theme={themeName}>
+    <S.styledDiv theme={themeName} isSearch={post?.length == 1 ? true : false}>
       <S.styledLeft>
         <Box className="Box">
           <Stepper activeStep={activeStep} orientation="vertical">
@@ -310,7 +359,49 @@ export const SearchPosts = () => {
       </S.styledLeft>
       <S.styledRight>
         {post?.length == 1 && (
-          <Box sx={styledBox}>
+          <Box sx={styledBox} className="BoxSearch">
+            <Typography sx={textBox} className="textBox">
+              O resultado da sua pesquisa é:
+            </Typography>
+            <Box sx={styledSubBox}>
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  columnGap: "10px",
+                }}
+              >
+                <Avatar
+                  src={post[0].image}
+                  sx={{ width: "100px", height: "100px" }}
+                ></Avatar>
+                <Typography sx={styledTextSubBox} className="textSubBox">
+                  Titulo: {post[0].name}
+                </Typography>
+              </Box>
+              <Box>
+                {" "}
+                <Typography sx={styledTextSubBoxSmall} className="textSubBox">
+                  Descrição: {post[0].description}
+                </Typography>
+              </Box>
+            </Box>
+            <Typography sx={textBox} className="textBox">
+              que tal conhecer um pouco mais sobre essa postagem?
+            </Typography>
+            <Button
+              variant="outlined"
+              sx={{
+                width: "90%",
+                fontFamily: "Montserrat",
+                fontSize: "1.3em",
+                height: "80px",
+              }}
+            >
+              Detalhes
+            </Button>
             <AiOutlineSearch className="iconSearch" />
             <S.styledRightAfter></S.styledRightAfter>
           </Box>
