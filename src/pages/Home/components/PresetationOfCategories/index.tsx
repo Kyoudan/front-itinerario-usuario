@@ -7,7 +7,7 @@ import { api } from "../../../../api/api";
 import { ITagsAxios } from "./types";
 import ScrollReveal from "scrollreveal";
 
-export const Categories = () => {
+export const PresetationOfCategories = () => {
   const { themeName } = useAppThemeContext();
   const [tag, setTags] = useState<Array<string | number>>([]);
   const Sr = ScrollReveal();

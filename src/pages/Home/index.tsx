@@ -5,14 +5,13 @@ import { SearchPosts } from "./components/SearchPosts";
 import { useEffect, useState } from "react";
 import { AiOutlineArrowUp } from "react-icons/ai";
 import { Footer } from "../../components/Footer";
-import { Categories } from "./components/PresetationOfCategories";
-
+import { PresetationOfCategories } from "./components/PresetationOfCategories";
+import { Categories } from "./components/Categories";
 
 export const Home = () => {
   const [scrollPosition, setScrollPosition] = useState<number>(0);
   const [buttonAnimate, setButtonAnimate] = useState<string>();
   const [viewButton, setViewButton] = useState<boolean>();
-
 
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -45,7 +44,8 @@ export const Home = () => {
       <Opening />
       <PresetationOfPosts />
       <SearchPosts />
-      <Categories />
+      <PresetationOfCategories />
+      <Categories />  
       <S.styledButton animate={buttonAnimate} onClick={handleClick}>
         <AiOutlineArrowUp className="Icon" />
       </S.styledButton>
