@@ -11,17 +11,21 @@ export const PresetationOfPosts = () => {
   const [width] = useState<number>(window.innerWidth);
   const { themeName } = useAppThemeContext();
   const Sr = ScrollReveal();
-  Sr.reveal(".styledDiv", {
-    duration: 1500,
-    reset: true,
-    rotate: { x: 10, y: 10, z: 0 },
-    origin: "bottom",
-    distance: "10%",
-  });
 
   useEffect(() => {
     themeName === "dark" ? setImg(Cards) : setImg(CardsClaro);
   }, [themeName]);
+
+  useEffect(() => {
+    Sr.reveal(".explore", {
+      duration: 1500,
+      reset: true,
+      rotate: { x: 10, y: 10, z: 0 },
+      origin: "bottom",
+      distance: "10%",
+    });
+  
+  }, [])
 
   const styledTypographyBorder = {
     fontFamily: "Bebas Neue",
@@ -42,13 +46,13 @@ export const PresetationOfPosts = () => {
   };
 
   return (
-    <S.styledDiv theme={themeName} className="styledDiv">
+    <S.styledDiv theme={themeName}>
       <S.styledLeft /* style={{ paddingLeft: "100px" }} */>
-        <Typography sx={styledTypographyBorder} className="text">
+        <Typography sx={styledTypographyBorder} className="text explore">
           EXPLORE
         </Typography>
       </S.styledLeft>
-      <S.styledImg src={img} />
+      <S.styledImg src={img} className="explore" />
       <S.shadowImg theme={themeName} />
     </S.styledDiv>
   );

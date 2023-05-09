@@ -7,7 +7,6 @@ export const styledDiv = styled.div<IStyledDiv>`
   position: relative;
   overflow: hidden;
   background-color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
-  visibility: hidden;
 
   @media (max-width: 680px) {
     height: 500px;

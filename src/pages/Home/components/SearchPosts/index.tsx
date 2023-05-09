@@ -16,7 +16,7 @@ import {
 import { useAppThemeContext } from "../../../../contexts/ThemeContext";
 import * as S from "./style";
 import { AiOutlineSearch } from "react-icons/ai";
-import { KeyboardEventHandler, useState } from "react";
+import { KeyboardEventHandler, useEffect, useState } from "react";
 import { api } from "../../../../api/api";
 import { IPost, IPostAxios } from "./types";
 import ScrollReveal from "scrollreveal";
@@ -29,13 +29,6 @@ export const SearchPosts = () => {
   const [post, setPost] = useState<IPost[]>();
   const [width] = useState<number>(window.innerWidth);
   const Sr = ScrollReveal();
-  Sr.reveal(".styledDiv", {
-    duration: 1500,
-    reset: true,
-    rotate: { x: 10, y: 10, z: 0 },
-    origin: "bottom",
-    distance: "10%",
-  });
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => {
@@ -229,13 +222,13 @@ export const SearchPosts = () => {
   const styledTextSubBoxSmall = {
     fontSize: "1em",
     fontFamily: "Montserrat",
-    color: themeName === "dark" ? "#fff" : "#1c1c1c",
+    color: "#fff",
     lineHeight: "40px",
     zIndex: 1,
     cursor: "default",
     userSelect: "none",
     textAlign: "justify",
-    backgroundColor: themeName === "dark" ? "#494949" : "#c0c0c0",
+    backgroundColor: themeName === "dark" ? "#A60303" : "#A60303",
     paddingLeft: "5px",
     paddingRight: "5px",
     borderRadius: "5px",
@@ -264,13 +257,18 @@ export const SearchPosts = () => {
     },
   });
 
+  useEffect(() => {
+    Sr.reveal(".search", {
+      duration: 1500,
+      rotate: { x: 10, y: 10, z: 0 },
+      origin: "bottom",
+      distance: "10%",
+    });
+  }, []);
+
   return (
-    <S.styledDiv
-      theme={themeName}
-      isSearch={post?.length == 1 ? true : false}
-      className="styledDiv"
-    >
-      <S.styledLeft>
+    <S.styledDiv theme={themeName} isSearch={post?.length == 1 ? true : false}>
+      <S.styledLeft className="search">
         <Box className="Box">
           <Stepper activeStep={activeStep} orientation="vertical">
             <Step>
