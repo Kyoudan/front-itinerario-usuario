@@ -5,6 +5,7 @@ import { SearchPosts } from "./components/SearchPosts";
 import { useEffect, useState } from "react";
 import { AiOutlineArrowUp } from "react-icons/ai";
 import { Footer } from "../../components/Footer";
+import { Categories } from "./components/PresetationOfCategories";
 
 
 export const Home = () => {
@@ -44,6 +45,7 @@ export const Home = () => {
       <Opening />
       <PresetationOfPosts />
       <SearchPosts />
+      <Categories />
       <S.styledButton animate={buttonAnimate} onClick={handleClick}>
         <AiOutlineArrowUp className="Icon" />
       </S.styledButton>
