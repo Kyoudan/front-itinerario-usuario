@@ -4,35 +4,24 @@ import CardsClaro from "../../../../assets/Cardsclaro.png";
 import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useAppThemeContext } from "../../../../contexts/ThemeContext";
+import ScrollReveal from "scrollreveal";
 
 export const PresetationOfPosts = () => {
   const [img, setImg] = useState<string>();
   const [width] = useState<number>(window.innerWidth);
   const { themeName } = useAppThemeContext();
+  const Sr = ScrollReveal();
+  Sr.reveal(".styledDiv", {
+    duration: 1500,
+    reset: true,
+    rotate: { x: 10, y: 10, z: 0 },
+    origin: "bottom",
+    distance: "10%",
+  });
 
   useEffect(() => {
     themeName === "dark" ? setImg(Cards) : setImg(CardsClaro);
   }, [themeName]);
-
-  const styledBox = {
-    width: "500px",
-    height: "500px",
-    borderRadius: "10px",
-    zIndex: 10,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
-  };
-
-  const styledTypography = {
-    fontSize: "6em",
-    fontFamily: "Bebas Neue",
-    color: "#fff",
-    /*     WebkitTextStroke: ".2px #ffffff",
-    textStroke: "1px #fff", */
-    lineHeight: "70px",
-  };
 
   const styledTypographyBorder = {
     fontFamily: "Bebas Neue",
@@ -53,7 +42,7 @@ export const PresetationOfPosts = () => {
   };
 
   return (
-    <S.styledDiv theme={themeName}>
+    <S.styledDiv theme={themeName} className="styledDiv">
       <S.styledLeft /* style={{ paddingLeft: "100px" }} */>
         <Typography sx={styledTypographyBorder} className="text">
           EXPLORE

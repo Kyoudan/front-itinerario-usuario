@@ -19,6 +19,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { KeyboardEventHandler, useState } from "react";
 import { api } from "../../../../api/api";
 import { IPost, IPostAxios } from "./types";
+import ScrollReveal from "scrollreveal";
 
 export const SearchPosts = () => {
   const { themeName } = useAppThemeContext();
@@ -27,6 +28,14 @@ export const SearchPosts = () => {
   const [search, setSearch] = useState<string>();
   const [post, setPost] = useState<IPost[]>();
   const [width] = useState<number>(window.innerWidth);
+  const Sr = ScrollReveal();
+  Sr.reveal(".styledDiv", {
+    duration: 1500,
+    reset: true,
+    rotate: { x: 10, y: 10, z: 0 },
+    origin: "bottom",
+    distance: "10%",
+  });
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => {
@@ -226,7 +235,7 @@ export const SearchPosts = () => {
     cursor: "default",
     userSelect: "none",
     textAlign: "justify",
-    backgroundColor: themeName === "dark" ? "#494949" : "#c0c0c0" ,
+    backgroundColor: themeName === "dark" ? "#494949" : "#c0c0c0",
     paddingLeft: "5px",
     paddingRight: "5px",
     borderRadius: "5px",
@@ -256,7 +265,11 @@ export const SearchPosts = () => {
   });
 
   return (
-    <S.styledDiv theme={themeName} isSearch={post?.length == 1 ? true : false}>
+    <S.styledDiv
+      theme={themeName}
+      isSearch={post?.length == 1 ? true : false}
+      className="styledDiv"
+    >
       <S.styledLeft>
         <Box className="Box">
           <Stepper activeStep={activeStep} orientation="vertical">
