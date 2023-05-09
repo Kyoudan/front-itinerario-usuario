@@ -16,7 +16,7 @@ import {
 import { useAppThemeContext } from "../../../../contexts/ThemeContext";
 import * as S from "./style";
 import { AiOutlineSearch } from "react-icons/ai";
-import { KeyboardEventHandler, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { api } from "../../../../api/api";
 import { IPost, IPostAxios } from "./types";
 import ScrollReveal from "scrollreveal";
@@ -46,7 +46,7 @@ export const SearchPosts = () => {
     if (e.keyCode == 13 && search) {
       try {
         const result: IPostAxios = await api.get(
-          `/post?find=${search}&limit=1`
+          `/postspublic?find=${search}&limit=1`
         );
         setIsSearch(true);
         setPost(result.data.data);
