@@ -1,5 +1,5 @@
 import * as S from "./styles";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { DrawerComponent } from "./components/Drawer";
 import {
   InputBase,
@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
   const [isDrawer, setIsDrawer] = useState<boolean>(false);
-  const [width, setWidth] = useState<number>(window.innerWidth);
+  const [width] = useState<number>(window.innerWidth);
   const navigate = useNavigate();
   const Search = styled("div")(({ theme }) => ({
     position: "relative",

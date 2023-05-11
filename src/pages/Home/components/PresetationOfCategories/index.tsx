@@ -7,6 +7,7 @@ import { api } from "../../../../api/api";
 import { ITagsAxios } from "./types";
 import ScrollReveal from "scrollreveal";
 
+
 export const PresetationOfCategories = () => {
   const { themeName } = useAppThemeContext();
   const [tag, setTags] = useState<Array<string | number>>([]);
@@ -14,6 +15,7 @@ export const PresetationOfCategories = () => {
 
   const handleGetTags = async () => {
     try {
+
       const result: ITagsAxios = await api.get("/posttags");
       let steps: Array<string | number> = [];
       result.data.data.forEach((item) => {
@@ -22,6 +24,8 @@ export const PresetationOfCategories = () => {
         }
       });
       setTags(steps);
+
+
     } catch (err) {
       console.log(err);
     }
@@ -40,7 +44,7 @@ export const PresetationOfCategories = () => {
   }, []);
 
   useEffect(() => {
-    console.log(tag);
+    console.log(tag)
   }, [tag]);
 
   return (

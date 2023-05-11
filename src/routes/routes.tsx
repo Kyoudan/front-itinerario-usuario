@@ -4,6 +4,7 @@ import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { ActivateAccount } from "../pages/ActivateAccount";
 import { OutlatNavbar } from "../components/OutlatNavbar";
+import { AppCategoriesProvider } from "../contexts/CategoriesContext";
 
 export const RoutesComponent = () => {
   return (
@@ -17,7 +18,14 @@ export const RoutesComponent = () => {
         ></Route>
 
         <Route element={<OutlatNavbar />}>
-          <Route path="/" element={<Home />}></Route>
+          <Route
+            path="/"
+            element={
+              <AppCategoriesProvider>
+                <Home />
+              </AppCategoriesProvider>
+            }
+          ></Route>
         </Route>
       </Routes>
     </BrowserRouter>
