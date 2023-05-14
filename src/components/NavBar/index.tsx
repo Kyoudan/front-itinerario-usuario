@@ -64,12 +64,10 @@ export const NavBar = () => {
   }));
 
   return (
-    <>
+    <S.styledDiv>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
-          <Toolbar
-            sx={{ flexDirection: width < 605 ? "column-reverse" : "row" }}
-          >
+          <Toolbar className="Toolbar">
             <S.styledNavBarRight>
               <IconButton
                 size="large"
@@ -79,16 +77,9 @@ export const NavBar = () => {
                 sx={{ mr: width < 605 ? "2 " : "0" }}
                 onClick={() => setIsDrawer(true)}
               >
-                <MenuIcon
-                  sx={{
-                    fontSize: width < 605 ? "1.2em" : "1em",
-                    border: width < 605 ? "1px solid #fff" : "0px",
-                    padding: width < 605 ? "5px" : "0px",
-                    borderRadius: width < 605 ? "50%" : "0",
-                  }}
-                />
+                <MenuIcon className="MenuIcon" />
               </IconButton>
-              {width > 721 && (
+              {width > 730 && (
                 <Typography
                   variant="h6"
                   noWrap
@@ -107,14 +98,12 @@ export const NavBar = () => {
 
             <Box
               sx={{
-                width: width > 721 ? "65%" : "92%",
                 display: "flex",
                 columnGap: "10px",
                 rowGap: "10px",
                 justifyContent: "end",
-                flexDirection: width < 605 ? "column" : "row",
-                marginTop: width < 605 ? "10px" : "0px",
               }}
+              className="Box"
             >
               <Search>
                 <SearchIconWrapper>
@@ -151,6 +140,6 @@ export const NavBar = () => {
       </Box>
 
       <DrawerComponent isDrawer={isDrawer} setIsDrawer={setIsDrawer} />
-    </>
+    </S.styledDiv>
   );
 };

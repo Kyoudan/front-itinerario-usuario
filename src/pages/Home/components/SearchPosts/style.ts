@@ -55,6 +55,56 @@ export const styledLeft = styled.div`
       width: 350px;
     }
   }
+
+  .styledTypography {
+    font-size: 6em;
+    letter-spacing: 10px;
+
+    @media (max-width: 690px) {
+      font-size: 3em;
+      letter-spacing: 3px;
+    }
+  }
+
+  .styledTypographyDefault {
+    font-size: 1.3em;
+
+    @media (max-width: 690px) {
+      font-size: 0.7em;
+    }
+  }
+
+  .titleStep {
+    font-size: 1.5em;
+
+    @media (max-width: 690px) {
+      font-size: 0.95em;
+    }
+  }
+
+  .textStep {
+    font-size: 1em;
+
+    @media (max-width: 690px) {
+      font-size: 0.7em;
+    }
+  }
+
+  .buttonStep {
+    font-size: 1em;
+
+    @media (max-width: 690px) {
+      font-size: 0.8em;
+    }
+  }
+
+  .textField {
+    width: 500px;
+
+    @media (max-width: 690px) {
+      width: 300px;
+    }
+  }
 `;
 
 export const styledRight = styled.div`

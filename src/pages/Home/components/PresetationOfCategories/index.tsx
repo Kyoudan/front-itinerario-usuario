@@ -6,34 +6,32 @@ import { useEffect, useState } from "react";
 import { api } from "../../../../api/api";
 import { ITagsAxios } from "./types";
 import ScrollReveal from "scrollreveal";
-
+import { useAppCategoriesContext } from "../../../../contexts/CategoriesContext";
 
 export const PresetationOfCategories = () => {
   const { themeName } = useAppThemeContext();
   const [tag, setTags] = useState<Array<string | number>>([]);
+  const { categories } = useAppCategoriesContext();
   const Sr = ScrollReveal();
 
   const handleGetTags = async () => {
     try {
-
-      const result: ITagsAxios = await api.get("/posttags");
       let steps: Array<string | number> = [];
-      result.data.data.forEach((item) => {
+      categories.forEach((item, index) => {
         if (item && item.name) {
           steps.push(item.name, 2000);
         }
+
+        if (index == categories.length - 1) {
+          setTags(steps);
+        }
       });
-      setTags(steps);
-
-
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    handleGetTags();
-
     Sr.reveal(".categories", {
       duration: 1500,
       reset: true,
@@ -44,7 +42,11 @@ export const PresetationOfCategories = () => {
   }, []);
 
   useEffect(() => {
-    console.log(tag)
+    handleGetTags();
+  }, [categories]);
+
+  useEffect(() => {
+    console.log(tag);
   }, [tag]);
 
   return (
@@ -53,7 +55,9 @@ export const PresetationOfCategories = () => {
         Tudo em um unico lugar
       </Typography>
       <Typography className="Text categories">
-        <Typical steps={tag ? tag : []} loop={Infinity}></Typical>
+        {categories.length > 0 && (
+          <Typical steps={tag} loop={Infinity}></Typical>
+        )}
       </Typography>
     </S.styledDiv>
   );

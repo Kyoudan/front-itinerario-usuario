@@ -238,7 +238,7 @@ export const padding = styled.div<IStyledPadding>`
 `;
 
 export const fundoFita = styled.img`
-  width: 1920px;
+  width: 2400px;
   height: 1080px;
   position: absolute;
   top: 20px;

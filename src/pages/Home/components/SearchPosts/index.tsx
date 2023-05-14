@@ -16,7 +16,7 @@ import {
 import { useAppThemeContext } from "../../../../contexts/ThemeContext";
 import * as S from "./style";
 import { AiOutlineSearch } from "react-icons/ai";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../../../api/api";
 import { IPost, IPostAxios } from "./types";
 import ScrollReveal from "scrollreveal";
@@ -124,7 +124,6 @@ export const SearchPosts = () => {
   });
 
   const styledTypography = {
-    fontSize: width > 690 ? "6em" : "3em",
     fontFamily: "Bebas Neue",
     color: "transparent",
     WebkitTextStroke: themeName === "dark" ? ".6px #ffffff" : "1px #000000",
@@ -133,11 +132,9 @@ export const SearchPosts = () => {
     zIndex: 1,
     cursor: "default",
     userSelect: "none",
-    letterSpacing: width > 690 ? "10px" : "3px",
   };
 
   const styledTypographyDefault = {
-    fontSize: width > 690 ? "1.3em" : ".7em",
     fontFamily: "Montserrat",
     color: themeName === "dark" ? "#bababa" : "#494949",
     lineHeight: "20px",
@@ -155,7 +152,6 @@ export const SearchPosts = () => {
   };
 
   const titleStep = {
-    fontSize: width > 690 ? "1.5em" : ".95em",
     fontFamily: "Montserrat",
     color: "#A60303",
     lineHeight: "20px",
@@ -166,7 +162,6 @@ export const SearchPosts = () => {
   };
 
   const textStep = {
-    fontSize: width > 690 ? "1em" : ".7em",
     fontFamily: "Montserrat",
     color: themeName === "dark" ? "#fff" : "#1c1c1c",
     lineHeight: "20px",
@@ -177,7 +172,6 @@ export const SearchPosts = () => {
   };
 
   const buttonStep = {
-    fontSize: width > 690 ? "1em" : ".8em",
     fontFamily: "Montserrat",
     lineHeight: "20px",
     zIndex: 1,
@@ -277,7 +271,7 @@ export const SearchPosts = () => {
               </StepLabel>
 
               <StepContent>
-                <Typography sx={textStep}>
+                <Typography sx={textStep} className="textStep">
                   Descubra um pouco mais sobre nosso itinerario!!!
                 </Typography>
                 <Box sx={{ mb: 2 }}>
@@ -288,7 +282,9 @@ export const SearchPosts = () => {
                         sx={{ mt: 1, mr: 1 }}
                         onClick={handleNext}
                       >
-                        <Typography sx={buttonStep}>Avançar</Typography>
+                        <Typography sx={buttonStep} className="buttonStep">
+                          Avançar
+                        </Typography>
                       </Button>
                     </ThemeProvider>
                   </div>
@@ -301,7 +297,7 @@ export const SearchPosts = () => {
               </StepLabel>
 
               <StepContent>
-                <Typography sx={textStep}>
+                <Typography sx={textStep} className="textStep">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Totam ullam nisi iusto, quae facilis, magnam pariatur, nostrum
                   impedit optio eum iure sit officia quas accusantium dicta
@@ -315,11 +311,15 @@ export const SearchPosts = () => {
                         sx={{ mt: 1, mr: 1 }}
                         onClick={handleNext}
                       >
-                        <Typography sx={buttonStep}>Avançar</Typography>
+                        <Typography sx={buttonStep} className="buttonStep">
+                          Avançar
+                        </Typography>
                       </Button>
                     </ThemeProvider>
                     <Button sx={{ mt: 1, mr: 1 }} onClick={handleBack}>
-                      <Typography sx={buttonStep}>Voltar</Typography>
+                      <Typography sx={buttonStep} className="buttonStep">
+                        Voltar
+                      </Typography>
                     </Button>
                   </div>
                 </Box>
@@ -340,7 +340,12 @@ export const SearchPosts = () => {
                     rowGap: "20px",
                   }}
                 >
-                  <Typography sx={styledTypography}>EXPERIMENTE</Typography>
+                  <Typography
+                    sx={styledTypography}
+                    className="styledTypography"
+                  >
+                    EXPERIMENTE
+                  </Typography>
                   <ThemeProvider theme={inputTheme}>
                     <TextField
                       label="Pesquisar"
@@ -348,9 +353,13 @@ export const SearchPosts = () => {
                       placeholder="Digite 'dignidade intima'"
                       onChange={(e) => setSearch(e.target.value)}
                       onKeyUp={(e) => handleFindPost(e)}
+                      className="textField"
                     ></TextField>
                   </ThemeProvider>
-                  <Typography sx={styledTypographyDefault}>
+                  <Typography
+                    sx={styledTypographyDefault}
+                    className="styledTypographyDefault"
+                  >
                     Nós produzimos varios conteudos durante os bimestres, que
                     tal experimentar um?
                   </Typography>
@@ -359,7 +368,9 @@ export const SearchPosts = () => {
                 <Box sx={{ mb: 2 }}>
                   <div>
                     <Button sx={{ mt: 1, mr: 1 }} onClick={handleBack}>
-                      <Typography sx={buttonStep}>Voltar</Typography>
+                      <Typography sx={buttonStep} className="buttonStep">
+                        Voltar
+                      </Typography>
                     </Button>
                   </div>
                 </Box>
@@ -418,7 +429,12 @@ export const SearchPosts = () => {
           </Box>
         )}
         {isSearch == true && post?.length == 0 && (
-          <Alert sx={titleStep} variant="outlined" severity="error">
+          <Alert
+            sx={titleStep}
+            variant="outlined"
+            severity="error"
+            className="titleStep"
+          >
             Não encontrado!!
           </Alert>
         )}

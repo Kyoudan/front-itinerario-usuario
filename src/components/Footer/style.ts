@@ -11,4 +11,5 @@ export const styledDiv = styled.div<IStyledDiv>`
   align-items: center;
   justify-content: center;
   column-gap: 50px;
+  flex-wrap: wrap;
 `;
