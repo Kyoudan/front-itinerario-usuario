@@ -23,10 +23,12 @@ import { ICategories, ICategoriesAxios, IProps } from "./types";
 import { useAppThemeContext } from "../../../../contexts/ThemeContext";
 import { useEffect, useState } from "react";
 import { api } from "../../../../api/api";
+import { useNavigate } from "react-router-dom";
 
 export const DrawerComponent = ({ isDrawer, setIsDrawer }: IProps) => {
   const { toggleTheme, themeName } = useAppThemeContext();
   const [categories, setCategories] = useState<ICategories[]>();
+  const navigate = useNavigate();
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 72,
@@ -207,7 +209,7 @@ export const DrawerComponent = ({ isDrawer, setIsDrawer }: IProps) => {
                                   marginTop: "5px",
                                 }}
                                 variant="text"
-                                onClick={() => console.log("1")}
+                                onClick={() => navigate(`/category/${item.name}`)}
                               >
                                 {item.name}
                               </Button>
