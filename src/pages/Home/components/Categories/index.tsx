@@ -28,11 +28,12 @@ export const Categories = () => {
       console.log(item);
       setSelectItem(item);
     }
+    console.log(x, y);
     const { x: divCenterX, y: divCenterY } =
       divCenter.current!.getBoundingClientRect();
     const finallyX = x - divCenterX;
     const finallyY = y - divCenterY;
-    setPositionDivCenter([divCenterX, divCenterY / 1.75]);
+    setPositionDivCenter([775, 500]);
 
     if (finallyX > 0 && finallyX < 300 && finallyY > 0 && finallyY < 100) {
       setAnimate("animate-in");
@@ -94,6 +95,9 @@ export const Categories = () => {
                   key={item.id}
                   text={item.name}
                   theme={themeName}
+                  onTouchStart={(e: any) => handleOnDrag(e.touches[0].clientX, e.touches[0].clientY, e.target.id)}
+                  onTouchMove={(e: any) => handleOnDrag(e.touches[0].clientX, e.touches[0].clientY)}
+                  onTouchEndCapture={(e: any) => handleOnDrag(e.changedTouches[0].clientX, e.changedTouches[0].clientY, selectItem, true)}
                 >
                   {item.name}
                 </S.boxCategories>

@@ -14,8 +14,8 @@ export const styledDiv = styled.div<IStyledDiv>`
     width: 300px;
     height: 50px;
     transform: translate(
-      ${({ divCenterX }) => `${divCenterX}px`},
-      ${({ divCenterY }) => `${divCenterY}px`}
+      ${({ divCenterX }) => `auto`},
+      ${({ divCenterY }) => `auto`}
     ) !important;
   }
 
