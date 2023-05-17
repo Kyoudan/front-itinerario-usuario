@@ -14,20 +14,29 @@ export const styledContainer = styled.div<IStyledContainer>`
     font-family: "Montserrat", sans-serif;
     margin: 10px 0 0 80px;
   }
-  
+  .Search{
+    width: 500px;
+    margin: 0 auto;
+  }
 `;
 export const styledDiv = styled.div<IStyledDiv>`
-  justify-content: center;
+  min-height: 100vh;
   display: flex;
-  flex-wrap: wrap;
-  margin: 0 auto;
+  flex-direction: column;
 
+  .postsCards{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
   .cardPosts{
     margin: 15px;
     background-color: ${({ theme }) => (theme === "dark" ? "#131313" : "#fff")};
     border: transparent;
     box-shadow: 0px 0px 4px 0px #000;
   }
+
 `;
 
 

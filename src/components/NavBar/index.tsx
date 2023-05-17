@@ -63,6 +63,8 @@ export const NavBar = () => {
     },
   }));
 
+
+
   return (
     <S.styledDiv>
       <Box sx={{ flexGrow: 1 }}>
@@ -112,6 +114,7 @@ export const NavBar = () => {
                 <StyledInputBase
                   placeholder="Search…"
                   inputProps={{ "aria-label": "search" }}
+
                 />
               </Search>
 

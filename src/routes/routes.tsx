@@ -22,7 +22,8 @@ export const RoutesComponent = () => {
                 <CategoriesPage />
               </AppCategoriesProvider>
             }
-          ></Route>
+          >
+          </Route>
         </Route>
         <Route
           path="/activateAccount/:uuid"
