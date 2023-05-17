@@ -131,7 +131,7 @@ export const DrawerComponent = ({ isDrawer, setIsDrawer }: IProps) => {
               {" "}
               <List>
                 <ListItem disablePadding>
-                  <ListItemButton>
+                  <ListItemButton onClick={() => navigate("/")}>
                     <ListItemIcon>
                       <Typography
                         sx={{
@@ -209,7 +209,9 @@ export const DrawerComponent = ({ isDrawer, setIsDrawer }: IProps) => {
                                   marginTop: "5px",
                                 }}
                                 variant="text"
-                                onClick={() => navigate(`/category/${item.name}`)}
+                                onClick={() =>
+                                  navigate(`/category/${item.name}`)
+                                }
                               >
                                 {item.name}
                               </Button>

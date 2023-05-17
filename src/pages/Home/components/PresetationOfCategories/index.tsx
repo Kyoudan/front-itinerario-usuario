@@ -3,8 +3,6 @@ import { useAppThemeContext } from "../../../../contexts/ThemeContext";
 import * as S from "./style";
 import Typical from "react-typical";
 import { useEffect, useState } from "react";
-import { api } from "../../../../api/api";
-import { ITagsAxios } from "./types";
 import ScrollReveal from "scrollreveal";
 import { useAppCategoriesContext } from "../../../../contexts/CategoriesContext";
 

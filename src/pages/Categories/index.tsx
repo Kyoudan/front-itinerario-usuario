@@ -5,13 +5,7 @@ import { api } from "../../api/api";
 import { useEffect, useState } from "react";
 import { Footer } from "../../components/Footer";
 import { IPosts } from "./types";
-import {
-  InputBase,
-  IconButton,
-  Typography,
-  styled,
-  alpha,
-} from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -19,63 +13,23 @@ import CardActions from "@mui/material/CardActions";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import { useNavigate } from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
+import { BsSearch } from "react-icons/bs";
+import { PropagateLoader } from "react-spinners";
+import Typical from "react-typical";
 
 export const CategoriesPage = () => {
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }));
-  const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
-      width: "auto",
-    },
-  }));
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("sm")]: {
-        width: "12ch",
-        "&:focus": {
-          width: "20ch",
-        },
-      },
-    },
-  }));
+  const { themeName } = useAppThemeContext();
 
   const [loading, setLoading] = useState(false);
-  const [isSearch, setIsSearch] = useState<boolean>(false);
   const [postsCount, setPostsCount] = useState<number>(0);
   const [posts, setPosts] = useState<IPosts[]>([]);
-  const { themeName } = useAppThemeContext();
   const { name } = useParams();
-  const { find } = useParams();
+  const [find, setFind] = useState<string>();
   const navigate = useNavigate();
-
 
   const GetPostsbyId = async (count?: number) => {
     try {
       setLoading(true);
-      setIsSearch(false);
       let result;
       result = await api.get(`/postsbytag?tag=${name}`);
       setPosts(result.data.data);
@@ -84,20 +38,20 @@ export const CategoriesPage = () => {
     } catch {}
   };
 
-  const handleKeyPress = async (event) => {
-    if (event.key === "Enter") {
-      try {
-        if (event.target.value) {
+  const handleKeyPress = async (event: any, key?: string) => {
+    try {
+      if (key === "Enter" || (event && event.type == "click")) {
+        if (find == "") {
+          GetPostsbyId();
+        } else {
           setLoading(true);
-          setIsSearch(false);
-          const result = await api.get(
-            `/postsbytag?tag=${name}&find=${event.target.value}`
-          );
+          const result = await api.get(`/postsbytag?tag=${name}&find=${find}`);
           setPosts(result.data.data);
-          setPostsCount(result.data.count);
           setLoading(false);
         }
-      } catch {}
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -108,30 +62,39 @@ export const CategoriesPage = () => {
   return (
     <>
       <S.styledContainer theme={themeName}>
-        <Typography className="Text-categories">{name}</Typography>
+        <Typography className="Text-categories" sx={{ textAlign: "center" }}>
+          <Typical steps={name ? [name, 500] : []}></Typical>
+        </Typography>
         <S.styledDiv theme={themeName}>
-          <Search className="Search">
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-              onKeyDown={handleKeyPress}
+          <div className="search">
+            <BsSearch
+              className="icon"
+              onClick={(e: any) => handleKeyPress(e)}
             />
-          </Search>
+            <S.InputSearch
+              placeholder="Search…"
+              onKeyDown={(e) => handleKeyPress(null, e.key)}
+              onChange={(e) => setFind(e.target.value)}
+            />
+          </div>
+
           <div className="postsCards">
-            {posts &&
+            {!loading ? (
               posts.map((item) => (
                 <Card
-                  sx={{ maxWidth: 345 }}
+                  sx={{ width: 345, cursor: "pointer" }}
                   onClick={() => navigate(`../postPage/${item.id}`)}
                   className="cardPosts"
+                  key={item.id}
                 >
                   <CardMedia
                     component="img"
                     height="194"
-                    image="https://rockntech.com.br/wp-content/uploads/2015/02/selfies-de-gatos_17.jpg"
+                    image={
+                      item.image
+                        ? item.image
+                        : "https://cdn.discordapp.com/attachments/863861085471244288/1107852050131333181/image.png"
+                    }
                     alt="Paella dish"
                     className="image"
                   />
@@ -139,14 +102,14 @@ export const CategoriesPage = () => {
                     <Typography
                       variant="body1"
                       color={themeName === "dark" ? "#fff" : "#fff"}
-                      className="Text"
+                      className="Title"
                     >
                       {item.name}
                     </Typography>
                     <Typography
                       variant="body2"
                       color={themeName === "dark" ? "#fff" : "#fff"}
-                      className="Text"
+                      className="Description"
                     >
                       {item.description}
                     </Typography>
@@ -160,7 +123,26 @@ export const CategoriesPage = () => {
                     </IconButton>
                   </CardActions>
                 </Card>
-              ))}
+              ))
+            ) : (
+              <>
+                <div className="LoadingDiv">
+                  <PropagateLoader
+                    color={themeName === "dark" ? "#fff" : "#a60303"}
+                    speedMultiplier={0.8}
+                    style={{
+                      width: "80%",
+                      height: "45px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      cursor: "pointer",
+                      borderRadius: "5px",
+                    }}
+                  />
+                </div>
+              </>
+            )}
           </div>
         </S.styledDiv>
         <Footer />

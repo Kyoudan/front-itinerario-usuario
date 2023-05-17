@@ -8,6 +8,7 @@ export interface IPosts {
   id: number;
   name: string;
   description: string;
+  image:string;
   color: string;
   uuid: string;
   createdAt: string;
