@@ -5,8 +5,8 @@ import { Register } from "../pages/Register";
 import { ActivateAccount } from "../pages/ActivateAccount";
 import { OutlatNavbar } from "../components/OutlatNavbar";
 import { AppCategoriesProvider } from "../contexts/CategoriesContext";
-import { Categories } from "../pages/Home/components/Categories";
 import { CategoriesPage } from "../pages/Categories";
+import { Postagens } from "../pages/Postagens";
 
 export const RoutesComponent = () => {
   return (
@@ -14,17 +14,6 @@ export const RoutesComponent = () => {
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
-        <Route element={<OutlatNavbar />}>
-          <Route
-            path="/category/:name"
-            element={
-              <AppCategoriesProvider>
-                <CategoriesPage />
-              </AppCategoriesProvider>
-            }
-          >
-          </Route>
-        </Route>
         <Route
           path="/activateAccount/:uuid"
           element={<ActivateAccount />}
@@ -36,6 +25,24 @@ export const RoutesComponent = () => {
             element={
               <AppCategoriesProvider>
                 <Home />
+              </AppCategoriesProvider>
+            }
+          ></Route>
+
+          <Route
+            path="/category/:name"
+            element={
+              <AppCategoriesProvider>
+                <CategoriesPage />
+              </AppCategoriesProvider>
+            }
+          ></Route>
+
+          <Route
+            path="/postagens/"
+            element={
+              <AppCategoriesProvider>
+                <Postagens />
               </AppCategoriesProvider>
             }
           ></Route>

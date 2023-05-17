@@ -150,7 +150,7 @@ export const DrawerComponent = ({ isDrawer, setIsDrawer }: IProps) => {
               <Divider />
               <List>
                 <ListItem disablePadding>
-                  <ListItemButton>
+                  <ListItemButton onClick={() => navigate("/postagens")}>
                     <ListItemIcon>
                       <Typography
                         sx={{
@@ -159,7 +159,7 @@ export const DrawerComponent = ({ isDrawer, setIsDrawer }: IProps) => {
                           fontSize: "1.5em",
                         }}
                       >
-                        Últimas nóticias
+                        Nóticias
                       </Typography>
                     </ListItemIcon>
                     <ListItemText />
