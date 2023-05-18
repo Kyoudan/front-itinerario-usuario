@@ -23,7 +23,7 @@ export const Posts = () => {
   const [countPosts, setCountPosts] = useState<number>();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const queryParamValue = queryParams.get("page");
+  const queryParamValue = queryParams.get("find");
   const [find, setFind] = useState<string>();
   const [loading, setLoading] = useState(false);
 
@@ -49,7 +49,8 @@ export const Posts = () => {
         (event && event.type == "click") ||
         event == "query"
       ) {
-        if (find == "") {
+        if (find == "" || find == queryParamValue) {
+          console.log("TUDOOOOO");
           getAllPosts();
         } else {
           setLoading(true);
