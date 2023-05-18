@@ -6,6 +6,7 @@ import { api } from "../../../../../../api/api";
 import { IProps, ITag, ITagAxios } from "./types";
 import { PropagateLoader } from "react-spinners";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import { Card, CardMedia, CardContent } from "@mui/material";
 
 export const Search = ({ item, setIsSearch }: IProps) => {
   const { themeName } = useAppThemeContext();
@@ -34,10 +35,39 @@ export const Search = ({ item, setIsSearch }: IProps) => {
           {categories && categories.length > 0 ? (
             categories?.map((item) => (
               <>
-                <S.styledSubBox theme={themeName}>
-                  <Typography className="Title">Titulo: {item.name}</Typography>
-                  <Typography className="Text">{item.description}</Typography>
-                </S.styledSubBox>
+                <Card
+                  sx={{ width: 300, cursor: "pointer" }}
+                  className="cardPosts"
+                  key={item.id}
+                >
+                  <CardMedia
+                    component="img"
+                    height="194"
+                    image={
+                      item.image
+                        ? item.image
+                        : "https://cdn.discordapp.com/attachments/863861085471244288/1107852050131333181/image.png"
+                    }
+                    alt="Paella dish"
+                    className="image"
+                  />
+                  <CardContent>
+                    <Typography
+                      variant="body1"
+                      color={themeName === "dark" ? "#fff" : "#fff"}
+                      className="Title"
+                    >
+                      {item.name}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color={themeName === "dark" ? "#fff" : "#fff"}
+                      className="Description"
+                    >
+                      {item.description}
+                    </Typography>
+                  </CardContent>
+                </Card>
               </>
             ))
           ) : (
