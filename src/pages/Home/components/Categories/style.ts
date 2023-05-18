@@ -3,7 +3,7 @@ import { IBoxCategories, IDivCenter, IStyledDiv } from "./types";
 
 export const styledDiv = styled.div<IStyledDiv>`
   width: 100%;
-  height: 600px;
+  min-height: 600px;
   background-color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
   position: relative;
   user-select: none;
@@ -13,10 +13,6 @@ export const styledDiv = styled.div<IStyledDiv>`
   .category-animateIn {
     width: 300px;
     height: 50px;
-    transform: translate(
-      ${({ divCenterX }) => `auto`},
-      ${({ divCenterY }) => `auto`}
-    ) !important;
   }
 
   .category-animateOut {
@@ -27,7 +23,7 @@ export const styledDiv = styled.div<IStyledDiv>`
 
 export const styledDivCenter = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 600px;
   display: flex;
   align-items: flex-end;
   justify-content: center;

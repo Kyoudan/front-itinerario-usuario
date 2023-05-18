@@ -3,7 +3,7 @@ import { IStyledBox, IStyledSubBox } from "./types";
 
 export const styledDiv = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 600px;
 
   display: flex;
   flex-direction: column;
@@ -19,6 +19,7 @@ export const styledBox = styled.div<IStyledBox>`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   row-gap: 15px;
   position: relative;
   flex-wrap: wrap;
