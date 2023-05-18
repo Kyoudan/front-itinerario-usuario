@@ -22,6 +22,7 @@ export interface IPosts {
   id: number;
   name: string;
   color: string;
+  description: string;
   image: string;
   uuid: string;
   users: IUser;
