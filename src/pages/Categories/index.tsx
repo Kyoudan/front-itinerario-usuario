@@ -25,6 +25,7 @@ export const CategoriesPage = () => {
   const [posts, setPosts] = useState<IPosts[]>([]);
   const { name } = useParams();
   const [find, setFind] = useState<string>();
+  const [nameTypical, setNameTypical] = useState<[string, number]>();
   const navigate = useNavigate();
 
   const GetPostsbyId = async (count?: number) => {
@@ -57,13 +58,21 @@ export const CategoriesPage = () => {
 
   useEffect(() => {
     GetPostsbyId();
+
+    setNameTypical(["", 500]);
+
+    setTimeout(() => {
+      if (name) {
+        setNameTypical([name, 500]);
+      }
+    }, 700);
   }, [name]);
 
   return (
     <>
       <S.styledContainer theme={themeName}>
         <Typography className="Text-categories" sx={{ textAlign: "center" }}>
-          <Typical steps={name ? [name, 500] : []}></Typical>
+          <Typical steps={name && nameTypical ? nameTypical : []}></Typical>
         </Typography>
         <S.styledDiv theme={themeName}>
           <div className="search">

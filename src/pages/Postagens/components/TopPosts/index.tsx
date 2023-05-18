@@ -19,9 +19,7 @@ export const TopPosts = () => {
   const getFeaturedPosts = async () => {
     try {
       const result: IAxiosFeaturedPosts = await api.get("/featuredposts");
-      setTimeout(() => {
         setFeaturedPosts(result.data.data);
-      }, 5000);
     } catch (err) {
       console.log(err);
     }
