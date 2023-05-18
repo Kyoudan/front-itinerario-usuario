@@ -20,7 +20,9 @@ export const TopPosts = () => {
 
   const getFeaturedPosts = async () => {
     try {
+      console.log("ué");
       const result: IAxiosFeaturedPosts = await api.get("/featuredposts");
+      console.log(result);
       console.log("Teste", result.data.data[0].Post.image);
       setFeaturedPosts(result.data.data);
       console.log(result);
@@ -56,7 +58,7 @@ export const TopPosts = () => {
 
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
-  const maxSteps = images.length;
+  const maxSteps = featuredPosts.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -93,7 +95,7 @@ export const TopPosts = () => {
               bgcolor: "background.default",
             }}
           >
-            <Typography>aa</Typography>
+            <Typography>{featuredPosts[activeStep].Post.name}</Typography>
           </Paper>
           <AutoPlaySwipeableViews
             axis={theme.direction === "rtl" ? "x-reverse" : "x"}

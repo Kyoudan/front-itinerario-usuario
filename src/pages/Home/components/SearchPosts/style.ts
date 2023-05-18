@@ -16,6 +16,61 @@ export const styledDiv = styled.div<IStyledDiv>`
     justify-content: center;
   }
 
+  .postsCards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
+  .cardPosts {
+    background-color: ${({ theme }) => (theme === "dark" ? "#131313" : "#fff")};
+    border: transparent;
+    box-shadow: 0px 0px 4px 0px #000;
+    transition: 0.5s;
+
+    &:hover {
+      transform: scale(1.02);
+      transition: 0.5s;
+      box-shadow: 0px 0px 10px 0px #000;
+    }
+  }
+
+  .search {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  .icon {
+    font-size: 1.7em;
+    background-color: ${({ theme }) =>
+      theme === "dark" ? "#A60303" : "#A60303"};
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.5s;
+
+    &:hover {
+      transform: scale(1.1);
+      transition: 0.5s;
+    }
+  }
+
+  .Title {
+    font-size: 1.3em;
+    color: ${({ theme }) => (theme === "dark" ? "#fff" : "#000")};
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+  }
+
+  .Description {
+    color: ${({ theme }) => (theme === "dark" ? "#fff" : "#000")};
+    font-family: "Montserrat", sans-serif;
+  }
+
   ${({ isSearch }) =>
     isSearch
       ? `  

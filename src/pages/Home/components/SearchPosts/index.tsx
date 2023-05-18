@@ -1,8 +1,10 @@
 import {
   Alert,
-  Avatar,
   Box,
   Button,
+  Card,
+  CardContent,
+  CardMedia,
   Step,
   StepContent,
   StepLabel,
@@ -15,7 +17,6 @@ import {
 } from "@mui/material";
 import { useAppThemeContext } from "../../../../contexts/ThemeContext";
 import * as S from "./style";
-import { AiOutlineSearch } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import { api } from "../../../../api/api";
 import { IPost, IPostAxios } from "./types";
@@ -144,13 +145,6 @@ export const SearchPosts = () => {
     maxWidth: "500px",
   };
 
-  const styledBox = {
-    backgroundColor: themeName === "dark" ? "#fff" : "#1c1c1c",
-    borderRadius: "10px",
-    position: "relative",
-    padding: "30px",
-  };
-
   const titleStep = {
     fontFamily: "Montserrat",
     color: "#A60303",
@@ -177,55 +171,6 @@ export const SearchPosts = () => {
     zIndex: 1,
     userSelect: "none",
     maxWidth: "500px",
-  };
-
-  const textBox = {
-    fontSize: "3em",
-    fontFamily: "Montserrat",
-    color: themeName === "dark" ? "#1c1c1c" : "#fff",
-    lineHeight: "50px",
-    zIndex: 1,
-    cursor: "default",
-    userSelect: "none",
-    textAlign: "center",
-  };
-
-  const styledSubBox = {
-    width: "90%",
-    backgroundColor: themeName === "dark" ? "#1c1c1c" : "#fff",
-    padding: "10px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: "5px",
-    rowGap: "10px",
-  };
-
-  const styledTextSubBox = {
-    fontSize: "1.4em",
-    fontFamily: "Montserrat",
-    color: themeName === "dark" ? "#fff" : "#1c1c1c",
-    lineHeight: "40px",
-    zIndex: 1,
-    cursor: "default",
-    userSelect: "none",
-    textAlign: "justify",
-  };
-
-  const styledTextSubBoxSmall = {
-    fontSize: "1em",
-    fontFamily: "Montserrat",
-    color: "#fff",
-    lineHeight: "40px",
-    zIndex: 1,
-    cursor: "default",
-    userSelect: "none",
-    textAlign: "justify",
-    backgroundColor: themeName === "dark" ? "#A60303" : "#A60303",
-    paddingLeft: "5px",
-    paddingRight: "5px",
-    borderRadius: "5px",
   };
 
   const buttonTheme = createTheme({
@@ -381,52 +326,39 @@ export const SearchPosts = () => {
       </S.styledLeft>
       <S.styledRight>
         {post?.length == 1 && (
-          <Box sx={styledBox} className="BoxSearch">
-            <Typography sx={textBox} className="textBox">
-              O resultado da sua pesquisa é:
-            </Typography>
-            <Box sx={styledSubBox}>
-              <Box
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  columnGap: "10px",
-                }}
+          <Card
+            sx={{ width: 345, cursor: "pointer" }}
+            className="cardPosts"
+            key={post[0].id}
+          >
+            <CardMedia
+              component="img"
+              height="194"
+              image={
+                post[0].image
+                  ? post[0].image
+                  : "https://cdn.discordapp.com/attachments/863861085471244288/1107852050131333181/image.png"
+              }
+              alt="Paella dish"
+              className="image"
+            />
+            <CardContent>
+              <Typography
+                variant="body1"
+                color={themeName === "dark" ? "#fff" : "#fff"}
+                className="Title"
               >
-                <Avatar
-                  src={post[0].image}
-                  sx={{ width: "100px", height: "100px" }}
-                ></Avatar>
-                <Typography sx={styledTextSubBox} className="textSubBox">
-                  Titulo: {post[0].name}
-                </Typography>
-              </Box>
-              <Box>
-                {" "}
-                <Typography sx={styledTextSubBoxSmall} className="textSubBox">
-                  Descrição: {post[0].description}
-                </Typography>
-              </Box>
-            </Box>
-            <Typography sx={textBox} className="textBox">
-              que tal conhecer um pouco mais sobre essa postagem?
-            </Typography>
-            <Button
-              variant="outlined"
-              sx={{
-                width: "90%",
-                fontFamily: "Montserrat",
-                fontSize: "1.3em",
-                height: "80px",
-              }}
-            >
-              Detalhes
-            </Button>
-            <AiOutlineSearch className="iconSearch" />
-            <S.styledRightAfter></S.styledRightAfter>
-          </Box>
+                {post[0].name}
+              </Typography>
+              <Typography
+                variant="body2"
+                color={themeName === "dark" ? "#fff" : "#fff"}
+                className="Description"
+              >
+                {post[0].description}
+              </Typography>
+            </CardContent>
+          </Card>
         )}
         {isSearch == true && post?.length == 0 && (
           <Alert
