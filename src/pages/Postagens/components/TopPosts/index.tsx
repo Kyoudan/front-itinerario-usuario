@@ -19,7 +19,7 @@ export const TopPosts = () => {
   const getFeaturedPosts = async () => {
     try {
       const result: IAxiosFeaturedPosts = await api.get("/featuredposts");
-        setFeaturedPosts(result.data.data);
+      setFeaturedPosts(result.data.data);
     } catch (err) {
       console.log(err);
     }
@@ -55,7 +55,11 @@ export const TopPosts = () => {
               <SwiperSlide style={{ width: "100%", height: "500px" }}>
                 <S.styledSlider>
                   <img
-                    src={item.Post.image}
+                    src={
+                      item.Post.image
+                        ? item.Post.image
+                        : "https://cdn.discordapp.com/attachments/863861085471244288/1107852050131333181/image.png"
+                    }
                     className="imageSwiper"
                     style={{ width: "100%", height: "100%" }}
                   />
