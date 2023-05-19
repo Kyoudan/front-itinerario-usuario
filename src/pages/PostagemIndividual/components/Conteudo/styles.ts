@@ -6,6 +6,8 @@ export const styledDiv = styled.div<IStyledDiv>`
   display: flex;
   justify-content: center;
   background-color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
+
+
 `;
 
 export const styledContent = styled.div`

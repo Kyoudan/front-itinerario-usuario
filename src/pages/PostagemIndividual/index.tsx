@@ -6,11 +6,20 @@ import { IPost, IPostAxios } from "./types";
 import { Cabecalho } from "./components/Cabecalho";
 import { Conteudo } from "./components/Conteudo";
 import { useAppThemeContext } from "../../contexts/ThemeContext";
+import { motion, useScroll, useSpring } from "framer-motion";
+import "./style.css";
 
 export const PostagemIndividual = () => {
   const [post, setPost] = useState<IPost>();
   const { uuid } = useParams();
   const { themeName } = useAppThemeContext();
+  const { scrollYProgress } = useScroll();
+
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   const getPost = async () => {
     try {
@@ -27,9 +36,12 @@ export const PostagemIndividual = () => {
   }, []);
 
   return (
-    <S.styledDiv>
-      <Cabecalho post={post} theme={themeName} />
-      <Conteudo post={post} theme={themeName} />
-    </S.styledDiv>
+    <>
+      <motion.div className="progress-bar" style={{ scaleX }} />
+      <S.styledDiv>
+        <Cabecalho post={post} theme={themeName} />
+        <Conteudo post={post} theme={themeName} />
+      </S.styledDiv>
+    </>
   );
 };
