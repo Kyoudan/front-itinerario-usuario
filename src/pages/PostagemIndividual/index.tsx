@@ -15,6 +15,8 @@ export const PostagemIndividual = () => {
   const { themeName } = useAppThemeContext();
   const { scrollYProgress } = useScroll();
 
+  console.log(scrollYProgress);
+
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
