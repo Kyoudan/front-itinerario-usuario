@@ -7,6 +7,8 @@ import {
   Typography,
   CardActions,
   IconButton,
+  Alert,
+  Box,
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
@@ -50,7 +52,6 @@ export const Posts = () => {
         event == "query"
       ) {
         if (find == "" || find == queryParamValue) {
-          console.log("TUDOOOOO");
           getAllPosts();
         } else {
           setLoading(true);
@@ -78,6 +79,16 @@ export const Posts = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (queryParamValue) {
+      setFind(queryParamValue);
+      handleKeyPress("query", "query", queryParamValue);
+      setTimeout(() => {
+        window.scrollTo({ top: 300, behavior: "smooth" });
+      }, 200);
+    }
+  }, [queryParamValue]);
+
   return (
     <S.styledDiv theme={themeName}>
       <div className="search">
@@ -88,7 +99,7 @@ export const Posts = () => {
           onChange={(e) => setFind(e.target.value)}
         />
       </div>
-      {posts ? (
+      {posts && posts.length > 0 ? (
         posts.map((item) => (
           <Card
             sx={{ width: 345, cursor: "pointer" }}
@@ -134,7 +145,31 @@ export const Posts = () => {
           </Card>
         ))
       ) : (
-        <></>
+        <Box
+          sx={{
+            height: "450px",
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Alert
+            severity="error"
+            sx={{
+              fontFamily: "Montserrat",
+              color: "#A60303",
+              lineHeight: "20px",
+              zIndex: 1,
+              cursor: "default",
+              userSelect: "none",
+              width: "345px",
+              fontSize: "1.5em",
+            }}
+          >
+            Nenhum resultado!!
+          </Alert>
+        </Box>
       )}
     </S.styledDiv>
   );
