@@ -7,6 +7,7 @@ import { OutlatNavbar } from "../components/OutlatNavbar";
 import { AppCategoriesProvider } from "../contexts/CategoriesContext";
 import { CategoriesPage } from "../pages/Categories";
 import { Postagens } from "../pages/Postagens";
+import { PostagemIndividual } from "../pages/PostagemIndividual";
 
 export const RoutesComponent = () => {
   return (
@@ -39,10 +40,19 @@ export const RoutesComponent = () => {
           ></Route>
 
           <Route
-            path="/postagens/"
+            path="/postagens"
             element={
               <AppCategoriesProvider>
                 <Postagens />
+              </AppCategoriesProvider>
+            }
+          ></Route>
+
+          <Route
+            path="/postagens/:uuid"
+            element={
+              <AppCategoriesProvider>
+                <PostagemIndividual />
               </AppCategoriesProvider>
             }
           ></Route>
