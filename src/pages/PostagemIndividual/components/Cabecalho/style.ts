@@ -14,7 +14,7 @@ export const styledDiv = styled.div<IStyledDiv>`
   .Title {
     font-size: 3.5em;
     font-weight: bold;
-    color: #000;
+    color: ${({ theme }) => (theme === "dark" ? "#fff" : "#000")};
     font-family: "Montserrat", sans-serif;
     max-width: 800px;
   }
@@ -23,6 +23,7 @@ export const styledDiv = styled.div<IStyledDiv>`
     color: #494949;
     font-family: "Montserrat", sans-serif;
     max-width: 800px;
+    color: ${({ theme }) => (theme === "dark" ? "#a6a6a6" : "#000")};
   }
 
   .AvatarDiv {
@@ -37,7 +38,7 @@ export const styledDiv = styled.div<IStyledDiv>`
   .Author {
     font-size: 1em;
     font-weight: bold;
-    color: #303030;
+    color: ${({ theme }) => (theme === "dark" ? "#a6a6a6" : "#303030")};
     font-family: "Montserrat", sans-serif;
     max-width: 800px;
   }
@@ -50,7 +51,8 @@ export const styledDiv = styled.div<IStyledDiv>`
   }
 
   .BoxCabecalho {
-    border-bottom: 1px solid #1c1c1c;
+    border-bottom: ${({ theme }) =>
+      theme === "dark" ? "1px solid #fff" : "1px solid #1c1c1c"};
     padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
