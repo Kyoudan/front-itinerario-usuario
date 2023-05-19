@@ -8,3 +8,8 @@ export interface IProps {
   post?: IPost;
   theme?: "dark" | "light";
 }
+
+export interface IStyledText {
+  theme?: "dark" | "light";
+  size?: number;
+}

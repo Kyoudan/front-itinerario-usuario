@@ -19,7 +19,7 @@ export interface IPostAxios {
       email: string;
       image: string;
     };
-    postContent: IPostContent[];
+    PostContent: IPostContent[];
   };
 }
 
@@ -43,7 +43,7 @@ export interface IPost {
     email: string;
     image: string;
   };
-  postContent: IPostContent[];
+  PostContent: IPostContent[];
 }
 
 export interface IPostContent {
