@@ -3,7 +3,7 @@ import * as S from "./style";
 import { IProps } from "./types";
 import { useEffect, useState } from "react";
 
-export const Cabecalho = ({ post }: IProps) => {
+export const Cabecalho = ({ post, theme }: IProps) => {
   const [altImage, setAltImage] = useState<string>();
   const [srcImage, setSrcImage] = useState<string>();
   const [avatar, setAvatar] = useState<string>();
@@ -50,7 +50,7 @@ export const Cabecalho = ({ post }: IProps) => {
   }, [post]);
 
   return (
-    <S.styledDiv>
+    <S.styledDiv theme={theme}>
       <div className="BoxCabecalho">
         <Typography className="Title">{post?.name}</Typography>
         <Typography className="Description">{post?.description}</Typography>

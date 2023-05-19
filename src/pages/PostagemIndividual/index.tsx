@@ -4,10 +4,13 @@ import { api } from "../../api/api";
 import { useParams } from "react-router-dom";
 import { IPost, IPostAxios } from "./types";
 import { Cabecalho } from "./components/Cabecalho";
+import { Conteudo } from "./components/Conteudo";
+import { useAppThemeContext } from "../../contexts/ThemeContext";
 
 export const PostagemIndividual = () => {
   const [post, setPost] = useState<IPost>();
   const { uuid } = useParams();
+  const { themeName } = useAppThemeContext();
 
   const getPost = async () => {
     try {
@@ -25,7 +28,8 @@ export const PostagemIndividual = () => {
 
   return (
     <S.styledDiv>
-      <Cabecalho post={post}/>
+      <Cabecalho post={post} theme={themeName} />
+      <Conteudo post={post} theme={themeName} />
     </S.styledDiv>
   );
 };

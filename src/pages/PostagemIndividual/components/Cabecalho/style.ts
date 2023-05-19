@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
+import { IStyledDiv } from "./types";
 
-export const styledDiv = styled.div`
+export const styledDiv = styled.div<IStyledDiv>`
   width: 100%;
   min-height: 300px;
   display: flex;
@@ -8,6 +9,7 @@ export const styledDiv = styled.div`
   align-items: center;
   justify-content: center;
   row-gap: 10px;
+  background-color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
 
   .Title {
     font-size: 3.5em;
