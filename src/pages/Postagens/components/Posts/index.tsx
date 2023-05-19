@@ -103,7 +103,7 @@ export const Posts = () => {
         posts.map((item) => (
           <Card
             sx={{ width: 345, cursor: "pointer" }}
-            onClick={() => navigate(`../postPage/${item.id}`)}
+            onClick={() => navigate(`../postagens/${item.uuid}`)}
             className="cardPosts"
             key={item.id}
           >

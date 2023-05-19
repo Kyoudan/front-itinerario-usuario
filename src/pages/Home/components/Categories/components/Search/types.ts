@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { NavigateFunction } from "react-router-dom";
 
 export interface IStyledBox {
   theme?: "dark" | "light";
@@ -20,9 +21,11 @@ export interface ITag {
   name: string;
   description: string;
   image: string;
+  uuid: string;
 }
 
 export interface IProps {
   item?: string;
   setIsSearch: Dispatch<SetStateAction<boolean>>;
+  navigate: NavigateFunction;
 }

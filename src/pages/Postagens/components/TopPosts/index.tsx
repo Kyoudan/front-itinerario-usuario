@@ -11,10 +11,12 @@ import "swiper/css/navigation";
 import "./style.css";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { Skeleton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export const TopPosts = () => {
   const { themeName } = useAppThemeContext();
   const [featuredPosts, setFeaturedPosts] = useState<IFeaturedPosts[]>([]);
+  const navigate = useNavigate();
 
   const getFeaturedPosts = async () => {
     try {
@@ -53,7 +55,9 @@ export const TopPosts = () => {
           {featuredPosts ? (
             featuredPosts.map((item) => (
               <SwiperSlide style={{ width: "100%", height: "500px" }}>
-                <S.styledSlider>
+                <S.styledSlider
+                  onClick={() => navigate(`/postagens/${item.Post.uuid}`)}
+                >
                   <img
                     src={
                       item.Post.image

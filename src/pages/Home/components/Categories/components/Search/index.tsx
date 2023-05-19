@@ -8,7 +8,7 @@ import { PropagateLoader } from "react-spinners";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { Card, CardMedia, CardContent } from "@mui/material";
 
-export const Search = ({ item, setIsSearch }: IProps) => {
+export const Search = ({ item, setIsSearch, navigate }: IProps) => {
   const { themeName } = useAppThemeContext();
   const [categories, setCategories] = useState<ITag[]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -39,6 +39,7 @@ export const Search = ({ item, setIsSearch }: IProps) => {
                   sx={{ width: 300, cursor: "pointer" }}
                   className="cardPosts"
                   key={item.id}
+                  onClick={() => navigate(`/postagens/${item.uuid}`)}
                 >
                   <CardMedia
                     component="img"

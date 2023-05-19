@@ -5,6 +5,7 @@ import Draggable from "react-draggable";
 import { Typography } from "@mui/material";
 import { useAppCategoriesContext } from "../../../../contexts/CategoriesContext";
 import { Search } from "./components/Search";
+import { useNavigate } from "react-router-dom";
 
 export const Categories = () => {
   const { themeName } = useAppThemeContext();
@@ -17,6 +18,7 @@ export const Categories = () => {
   ]);
   const [isSearch, setIsSearch] = useState<boolean>(false);
   const [selectCategory, setSelectCategory] = useState<string>();
+  const navigate = useNavigate();
 
   const handleOnDrag = (
     x: number,
@@ -95,9 +97,24 @@ export const Categories = () => {
                   key={item.id}
                   text={item.name}
                   theme={themeName}
-                  onTouchStart={(e: any) => handleOnDrag(e.touches[0].clientX, e.touches[0].clientY, e.target.id)}
-                  onTouchMove={(e: any) => handleOnDrag(e.touches[0].clientX, e.touches[0].clientY)}
-                  onTouchEndCapture={(e: any) => handleOnDrag(e.changedTouches[0].clientX, e.changedTouches[0].clientY, selectItem, true)}
+                  onTouchStart={(e: any) =>
+                    handleOnDrag(
+                      e.touches[0].clientX,
+                      e.touches[0].clientY,
+                      e.target.id
+                    )
+                  }
+                  onTouchMove={(e: any) =>
+                    handleOnDrag(e.touches[0].clientX, e.touches[0].clientY)
+                  }
+                  onTouchEndCapture={(e: any) =>
+                    handleOnDrag(
+                      e.changedTouches[0].clientX,
+                      e.changedTouches[0].clientY,
+                      selectItem,
+                      true
+                    )
+                  }
                 >
                   {item.name}
                 </S.boxCategories>
@@ -118,7 +135,11 @@ export const Categories = () => {
         </>
       ) : (
         <>
-          <Search item={selectCategory} setIsSearch={setIsSearch} />
+          <Search
+            item={selectCategory}
+            setIsSearch={setIsSearch}
+            navigate={navigate}
+          />
         </>
       )}
     </S.styledDiv>

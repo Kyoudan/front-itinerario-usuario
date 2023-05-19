@@ -21,6 +21,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../../../api/api";
 import { IPost, IPostAxios } from "./types";
 import ScrollReveal from "scrollreveal";
+import { useNavigate } from "react-router-dom";
 
 export const SearchPosts = () => {
   const { themeName } = useAppThemeContext();
@@ -29,6 +30,7 @@ export const SearchPosts = () => {
   const [search, setSearch] = useState<string>();
   const [post, setPost] = useState<IPost[]>();
   const [width] = useState<number>(window.innerWidth);
+  const navigate = useNavigate();
   const Sr = ScrollReveal();
 
   const handleNext = () => {
@@ -330,6 +332,7 @@ export const SearchPosts = () => {
             sx={{ width: 345, cursor: "pointer" }}
             className="cardPosts"
             key={post[0].id}
+            onClick={() => navigate(`/postagens/${post[0].uuid}`)}
           >
             <CardMedia
               component="img"

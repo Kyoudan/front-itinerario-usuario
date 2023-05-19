@@ -13,6 +13,7 @@ export interface IPostAxios {
 export interface IPost {
   id?: number;
   name?: string;
+  uuid?: string;
   description?: string;
   createdAt?: string;
   image?: string;
