@@ -8,6 +8,7 @@ export const styledDiv = styled.div<IStyledDiv>`
   position: relative;
   user-select: none;
   overflow-x: hidden;
+  padding-top: 50px;
   overflow-y: visible;
 
   .category-animateIn {
@@ -35,6 +36,7 @@ export const DivCenter = styled.div<IDivCenter>`
   background-color: transparent;
   border-radius: 10px;
   margin-bottom: 10px;
+
   border: ${({ theme }) =>
     theme === "dark" ? "1px dashed #fff" : "1px dashed #1c1c1c"};
   display: flex;
@@ -73,6 +75,7 @@ export const DivCenter = styled.div<IDivCenter>`
 
 export const boxCategories = styled.div<IBoxCategories>`
   width: 130px;
+
   background-color: #a60303;
   padding: 10px;
   border-radius: 5px;
