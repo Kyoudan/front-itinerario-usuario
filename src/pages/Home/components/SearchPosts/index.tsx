@@ -22,6 +22,7 @@ import { api } from "../../../../api/api";
 import { IPost, IPostAxios } from "./types";
 import ScrollReveal from "scrollreveal";
 import { useNavigate } from "react-router-dom";
+import { PropagateLoader } from "react-spinners";
 
 export const SearchPosts = () => {
   const { themeName } = useAppThemeContext();
@@ -30,6 +31,7 @@ export const SearchPosts = () => {
   const [search, setSearch] = useState<string>();
   const [post, setPost] = useState<IPost[]>();
   const [width] = useState<number>(window.innerWidth);
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const Sr = ScrollReveal();
 
@@ -48,12 +50,13 @@ export const SearchPosts = () => {
   const handleFindPost = async (e: any) => {
     if (e.keyCode == 13 && search) {
       try {
+        setLoading(true);
         const result: IPostAxios = await api.get(
           `/postspublic?find=${search}&limit=1`
         );
         setIsSearch(true);
         setPost(result.data.data);
-        console.log(result);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -328,40 +331,52 @@ export const SearchPosts = () => {
       </S.styledLeft>
       <S.styledRight>
         {post?.length == 1 && (
-          <Card
-            sx={{ width: 345, cursor: "pointer" }}
-            className="cardPosts"
-            key={post[0].id}
-            onClick={() => navigate(`/postagens/${post[0].uuid}`)}
-          >
-            <CardMedia
-              component="img"
-              height="194"
-              image={
-                post[0].image
-                  ? post[0].image
-                  : "https://cdn.discordapp.com/attachments/863861085471244288/1107852050131333181/image.png"
-              }
-              alt="Paella dish"
-              className="image"
-            />
-            <CardContent>
-              <Typography
-                variant="body1"
-                color={themeName === "dark" ? "#fff" : "#fff"}
-                className="Title"
-              >
-                {post[0].name}
-              </Typography>
-              <Typography
-                variant="body2"
-                color={themeName === "dark" ? "#fff" : "#fff"}
-                className="Description"
-              >
-                {post[0].description}
-              </Typography>
-            </CardContent>
-          </Card>
+          <>
+            <Typography
+              sx={styledTypographyDefault}
+              style={{
+                fontSize: "1.5em",
+                marginRight: "50px",
+                marginBottom: "10px",
+              }}
+            >
+              Resultado da pesquisa:
+            </Typography>
+            <Card
+              sx={{ width: 345, cursor: "pointer" }}
+              className="cardPosts"
+              key={post[0].id}
+              onClick={() => navigate(`/postagens/${post[0].uuid}`)}
+            >
+              <CardMedia
+                component="img"
+                height="194"
+                image={
+                  post[0].image
+                    ? post[0].image
+                    : "https://cdn.discordapp.com/attachments/863861085471244288/1107852050131333181/image.png"
+                }
+                alt="Paella dish"
+                className="image"
+              />
+              <CardContent>
+                <Typography
+                  variant="body1"
+                  color={themeName === "dark" ? "#fff" : "#fff"}
+                  className="Title"
+                >
+                  {post[0].name}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color={themeName === "dark" ? "#fff" : "#fff"}
+                  className="Description"
+                >
+                  {post[0].description}
+                </Typography>
+              </CardContent>
+            </Card>
+          </>
         )}
         {isSearch == true && post?.length == 0 && (
           <Alert
@@ -372,6 +387,21 @@ export const SearchPosts = () => {
           >
             Não encontrado!!
           </Alert>
+        )}
+        {loading && (
+          <PropagateLoader
+            color={themeName === "dark" ? "#fff" : "#a60303"}
+            speedMultiplier={0.8}
+            style={{
+              width: "80%",
+              height: "45px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              borderRadius: "5px",
+            }}
+          />
         )}
       </S.styledRight>
     </S.styledDiv>
