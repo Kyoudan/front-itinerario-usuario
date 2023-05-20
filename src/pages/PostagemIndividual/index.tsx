@@ -29,11 +29,8 @@ export const PostagemIndividual = () => {
     try {
       setIsLoadingScreen(true);
       const result: IPostAxios = await api.get(`/post/${uuid}`);
-      console.log(result.data);
       setPost(result.data);
-      setTimeout(() => {
         setIsLoadingScreen(false);
-      }, 5000);
     } catch (err) {
       console.log(err);
     }

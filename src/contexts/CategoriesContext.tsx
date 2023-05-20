@@ -45,9 +45,7 @@ export const AppCategoriesProvider = ({ children }: IProps) => {
       setIsLoadingScreen(true);
       const result: ITagsAxios = await api.get("/posttags");
       setCategories(result.data.data);
-      setTimeout(() => {
-        setIsLoadingScreen(false);
-      }, 5000);
+      setIsLoadingScreen(false);
     } catch {}
   };
 

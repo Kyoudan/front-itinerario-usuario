@@ -15,9 +15,10 @@ import { RiMoonClearFill } from "react-icons/ri";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { api } from "../../api/api";
+import { z } from "zod";
 
 export const Login = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -145,6 +146,21 @@ export const Login = () => {
       }, 2000);
     }
   };
+
+  useEffect(() => {
+    if (email) {
+      const emailSchema = z.string().email().min(4);
+      const emailValidation = emailSchema.safeParse(email);
+      !emailValidation.success ? setAlert("Email invalido") : setAlert("");
+    }
+
+    if (password) {
+      const passwordSchema = z.string().min(6);
+      const passwordValidation = passwordSchema.safeParse(password);
+      !passwordValidation.success ? setAlert("Senha invalida") : setAlert("");
+    }
+  }, [email, password]);
+
   return (
     <S.styledDiv>
       {!hideLogin && (
@@ -230,6 +246,7 @@ export const Login = () => {
                 }}
                 variant="contained"
                 onClick={LoginUser}
+                disabled={alert || !email || !password ? true : false}
               >
                 Acessar
               </Button>

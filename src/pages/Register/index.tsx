@@ -18,6 +18,7 @@ import { PropagateLoader } from "react-spinners";
 import { useEffect, useState } from "react";
 import { AiFillWarning } from "react-icons/ai";
 import { api } from "../../api/api";
+import { z } from "zod";
 
 export const Register = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -43,6 +44,18 @@ export const Register = () => {
       setAlert("");
     }
   }, [password, confirmPassword]);
+
+  useEffect(() => {
+    if (email) {
+      const emailSchema = z.string().email().min(5);
+      const isValid = emailSchema.safeParse(email);
+      if (!isValid.success) {
+        setAlert("Insira um email valido!!");
+      } else {
+        setAlert("");
+      }
+    }
+  }, [email]);
 
   const inputTheme = createTheme({
     palette: {
@@ -268,6 +281,11 @@ export const Register = () => {
                 }}
                 variant="contained"
                 onClick={CreateUser}
+                disabled={
+                  alert || !email || !password || !confirmPassword || !name
+                    ? true
+                    : false
+                }
               >
                 Criar conta
               </Button>
@@ -323,7 +341,7 @@ export const Register = () => {
               color: "#fff",
               border: "1px solid #fff",
               marginTop: "10px",
-              backgroundColor: "#a60303"
+              backgroundColor: "#a60303",
             }}
             variant="text"
             onClick={() => navigate("/login")}
