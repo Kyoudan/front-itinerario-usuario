@@ -6,6 +6,7 @@ import {
   useEffect,
 } from "react";
 import { api } from "../api/api";
+import { useScreenLoadingContext } from "./ScreenLoadingContext/ScreenLoadingContext";
 
 interface IProps {
   children: ReactNode;
@@ -37,11 +38,16 @@ export const useAppCategoriesContext = () => {
 
 export const AppCategoriesProvider = ({ children }: IProps) => {
   const [categories, setCategories] = useState<ITags[]>([]);
+  const { setIsLoadingScreen } = useScreenLoadingContext();
 
   const getAllCategories = async () => {
     try {
+      setIsLoadingScreen(true);
       const result: ITagsAxios = await api.get("/posttags");
       setCategories(result.data.data);
+      setTimeout(() => {
+        setIsLoadingScreen(false);
+      }, 5000);
     } catch {}
   };
 

@@ -1,6 +1,7 @@
 import "./styles/global.css";
 import { RoutesComponent } from "./routes/routes";
 import { AppThemeProvider } from "./contexts/ThemeContext";
+import { ScreenLoadingProvider } from "./contexts/ScreenLoadingContext/ScreenLoadingContext";
 
 declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides {
@@ -11,7 +12,9 @@ declare module "@mui/material/Button" {
 function App() {
   return (
     <AppThemeProvider>
-      <RoutesComponent />
+      <ScreenLoadingProvider>
+        <RoutesComponent />
+      </ScreenLoadingProvider>
     </AppThemeProvider>
   );
 }
