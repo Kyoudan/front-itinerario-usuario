@@ -12,16 +12,20 @@ import "./style.css";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { Skeleton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useScreenLoadingContext } from "../../../../contexts/ScreenLoadingContext/ScreenLoadingContext";
 
 export const TopPosts = () => {
   const { themeName } = useAppThemeContext();
   const [featuredPosts, setFeaturedPosts] = useState<IFeaturedPosts[]>([]);
+  const { setIsLoadingScreen } = useScreenLoadingContext();
   const navigate = useNavigate();
 
   const getFeaturedPosts = async () => {
     try {
+      setIsLoadingScreen(true);
       const result: IAxiosFeaturedPosts = await api.get("/featuredposts");
       setFeaturedPosts(result.data.data);
+      setIsLoadingScreen(false);
     } catch (err) {
       console.log(err);
     }
