@@ -9,13 +9,8 @@ export interface IStyledRight {
 export interface IAxiosFeaturedPosts {
   data: {
     count: number;
-    data: IFeaturedPosts[];
+    data: IPosts[];
   };
-}
-
-export interface IFeaturedPosts {
-  id: number;
-  Post: IPosts;
 }
 
 export interface IPosts {

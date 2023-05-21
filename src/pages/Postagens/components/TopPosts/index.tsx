@@ -3,7 +3,7 @@ import * as S from "./style";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { api } from "../../../../api/api";
-import { IAxiosFeaturedPosts, IFeaturedPosts } from "./types";
+import { IAxiosFeaturedPosts, IPosts } from "./types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -16,7 +16,7 @@ import { useScreenLoadingContext } from "../../../../contexts/ScreenLoadingConte
 
 export const TopPosts = () => {
   const { themeName } = useAppThemeContext();
-  const [featuredPosts, setFeaturedPosts] = useState<IFeaturedPosts[]>([]);
+  const [featuredPosts, setFeaturedPosts] = useState<IPosts[]>([]);
   const { setIsLoadingScreen } = useScreenLoadingContext();
   const navigate = useNavigate();
 
@@ -24,6 +24,7 @@ export const TopPosts = () => {
     try {
       setIsLoadingScreen(true);
       const result: IAxiosFeaturedPosts = await api.get("/featuredposts");
+      console.log(result.data.data);
       setFeaturedPosts(result.data.data);
       setIsLoadingScreen(false);
     } catch (err) {
@@ -56,26 +57,24 @@ export const TopPosts = () => {
           modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper"
         >
-          {featuredPosts ? (
+          {featuredPosts.length > 0 ? (
             featuredPosts.map((item) => (
               <SwiperSlide style={{ width: "100%", height: "500px" }}>
                 <S.styledSlider
-                  onClick={() => navigate(`/postagens/${item.Post.uuid}`)}
+                  onClick={() => navigate(`/postagens/${item.uuid}`)}
                 >
                   <img
                     src={
-                      item.Post.image
-                        ? item.Post.image
+                      item.image
+                        ? item.image
                         : "https://cdn.discordapp.com/attachments/863861085471244288/1107852050131333181/image.png"
                     }
                     className="imageSwiper"
                     style={{ width: "100%", height: "100%" }}
                   />
-                  <Typography className="TextSwiper">
-                    {item.Post.name}
-                  </Typography>
+                  <Typography className="TextSwiper">{item.name}</Typography>
                   <Typography className="DescriptionSwiper">
-                    {item.Post.description}
+                    {item.description}
                   </Typography>
                 </S.styledSlider>
               </SwiperSlide>
