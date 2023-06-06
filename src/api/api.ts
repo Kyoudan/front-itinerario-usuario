@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://api-itinerario-adherbal-production.up.railway.app",
   timeout: 10000,
 });
