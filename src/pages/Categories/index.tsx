@@ -3,7 +3,6 @@ import * as S from "./style";
 import { useAppThemeContext } from "../../contexts/ThemeContext";
 import { api } from "../../api/api";
 import { useEffect, useState } from "react";
-import { Footer } from "../../components/Footer";
 import { IPosts } from "./types";
 import { Typography } from "@mui/material";
 import Card from "@mui/material/Card";
