@@ -13,6 +13,7 @@ import { BsSearch } from "react-icons/bs";
 import { PropagateLoader } from "react-spinners";
 import Typical from "react-typical";
 import { UpButton } from "../../components/UpButton";
+import { ShortcutMenu } from "../../components/ShortcutMenu";
 
 export const CategoriesPage = () => {
   const { themeName } = useAppThemeContext();
@@ -65,6 +66,7 @@ export const CategoriesPage = () => {
 
   return (
     <>
+      <ShortcutMenu />
       <UpButton />
       <S.styledContainer theme={themeName}>
         <Typography className="Text-categories" sx={{ textAlign: "center" }}>

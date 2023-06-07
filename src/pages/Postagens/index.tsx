@@ -4,12 +4,14 @@ import { Typography } from "@mui/material";
 import * as S from "./style";
 import { Posts } from "./components/Posts";
 import { UpButton } from "../../components/UpButton";
+import { ShortcutMenu } from "../../components/ShortcutMenu";
 
 export const Postagens = () => {
   const { themeName } = useAppThemeContext();
 
   return (
     <S.styledDiv theme={themeName}>
+      <ShortcutMenu />
       <UpButton />
       <TopPosts />
       <div className="DivTitlePostsContainer">

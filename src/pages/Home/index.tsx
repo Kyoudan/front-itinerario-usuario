@@ -5,6 +5,7 @@ import { SearchPosts } from "./components/SearchPosts";
 import { PresetationOfCategories } from "./components/PresetationOfCategories";
 import { Categories } from "./components/Categories";
 import { UpButton } from "../../components/UpButton";
+import { ShortcutMenu } from "../../components/ShortcutMenu";
 
 export const Home = () => {
   return (
@@ -16,6 +17,7 @@ export const Home = () => {
         <PresetationOfCategories />
         <Categories />
         <UpButton />
+        <ShortcutMenu />
       </S.styledContainer>
     </>
   );

@@ -10,6 +10,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import "./style.css";
 import { useScreenLoadingContext } from "../../contexts/ScreenLoadingContext/ScreenLoadingContext";
 import { UpButton } from "../../components/UpButton";
+import { ShortcutMenu } from "../../components/ShortcutMenu";
 
 export const PostagemIndividual = () => {
   const [post, setPost] = useState<IPost>();
@@ -41,6 +42,7 @@ export const PostagemIndividual = () => {
 
   return (
     <>
+      <ShortcutMenu />
       <UpButton />
       <motion.div className="progress-bar" style={{ scaleX }} />
       <S.styledDiv>
