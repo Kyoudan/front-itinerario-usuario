@@ -5,13 +5,10 @@ import { api } from "../../api/api";
 import { useEffect, useState } from "react";
 import { Footer } from "../../components/Footer";
 import { IPosts } from "./types";
-import { IconButton, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import { useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { PropagateLoader } from "react-spinners";
@@ -21,20 +18,18 @@ export const CategoriesPage = () => {
   const { themeName } = useAppThemeContext();
 
   const [loading, setLoading] = useState(false);
-  const [postsCount, setPostsCount] = useState<number>(0);
   const [posts, setPosts] = useState<IPosts[]>([]);
   const { name } = useParams();
   const [find, setFind] = useState<string>();
   const [nameTypical, setNameTypical] = useState<[string, number]>();
   const navigate = useNavigate();
 
-  const GetPostsbyId = async (count?: number) => {
+  const GetPostsbyId = async () => {
     try {
       setLoading(true);
       let result;
       result = await api.get(`/postsbytag?tag=${name}`);
       setPosts(result.data.data);
-      setPostsCount(result.data.count);
       setLoading(false);
     } catch {}
   };
@@ -92,7 +87,6 @@ export const CategoriesPage = () => {
               posts.map((item) => (
                 <Card
                   sx={{ width: 345, cursor: "pointer" }}
-                  onClick={() => navigate(`../postagens/${item.uuid}`)}
                   className="cardPosts"
                   key={item.id}
                 >
@@ -106,8 +100,11 @@ export const CategoriesPage = () => {
                     }
                     alt="Paella dish"
                     className="image"
+                    onClick={() => navigate(`../postagens/${item.uuid}`)}
                   />
-                  <CardContent>
+                  <CardContent
+                    onClick={() => navigate(`../postagens/${item.uuid}`)}
+                  >
                     <Typography
                       variant="body1"
                       color={themeName === "dark" ? "#fff" : "#fff"}
@@ -123,14 +120,6 @@ export const CategoriesPage = () => {
                       {item.description}
                     </Typography>
                   </CardContent>
-                  <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                      <FavoriteIcon />
-                    </IconButton>
-                    <IconButton aria-label="share">
-                      <ShareIcon />
-                    </IconButton>
-                  </CardActions>
                 </Card>
               ))
             ) : (
