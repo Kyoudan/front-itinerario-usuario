@@ -76,20 +76,20 @@ export const styledDiv = styled.div<IStyledDiv>`
       ? `  
       @media (max-width: 1336px) {
 
-        height: 1200px;
+        height: 1000px;
 
       }
 
       @media (max-width: 684px) {
-        height: 1300px;
+        height: 1000px;
       }
 
       @media (max-width: 600px) {
-        height: 1400px;
+        height: 1100px;
       }
 
       @media (max-width: 460px) {
-        height: 1500px;
+        height: 1000px;
       }`
       : ``}
 `;

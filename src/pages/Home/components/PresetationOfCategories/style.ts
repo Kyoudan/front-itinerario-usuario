@@ -11,6 +11,10 @@ export const styledDiv = styled.div<IStyledDiv>`
   flex-direction: column;
   user-select: none;
 
+  @media (max-width: 665px) {
+    height: 200px;
+  }
+
   .Text {
     font-size: 6em;
     color: ${({ theme }) => (theme === "dark" ? "#fff" : "#1c1c1c")};
