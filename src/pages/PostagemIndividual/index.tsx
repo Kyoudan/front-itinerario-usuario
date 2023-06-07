@@ -9,6 +9,7 @@ import { useAppThemeContext } from "../../contexts/ThemeContext";
 import { motion, useScroll, useSpring } from "framer-motion";
 import "./style.css";
 import { useScreenLoadingContext } from "../../contexts/ScreenLoadingContext/ScreenLoadingContext";
+import { UpButton } from "../../components/UpButton";
 
 export const PostagemIndividual = () => {
   const [post, setPost] = useState<IPost>();
@@ -16,8 +17,6 @@ export const PostagemIndividual = () => {
   const { themeName } = useAppThemeContext();
   const { scrollYProgress } = useScroll();
   const { setIsLoadingScreen } = useScreenLoadingContext();
-
-  console.log(scrollYProgress);
 
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -30,7 +29,7 @@ export const PostagemIndividual = () => {
       setIsLoadingScreen(true);
       const result: IPostAxios = await api.get(`/post/${uuid}`);
       setPost(result.data);
-        setIsLoadingScreen(false);
+      setIsLoadingScreen(false);
     } catch (err) {
       console.log(err);
     }
@@ -42,6 +41,7 @@ export const PostagemIndividual = () => {
 
   return (
     <>
+      <UpButton />
       <motion.div className="progress-bar" style={{ scaleX }} />
       <S.styledDiv>
         <Cabecalho post={post} theme={themeName} />
