@@ -1,14 +1,7 @@
 import * as S from "./styles";
 import { useEffect, useState } from "react";
 import { DrawerComponent } from "./components/Drawer";
-import {
-  Toolbar,
-  IconButton,
-  Typography,
-  AppBar,
-  Box,
-  Button,
-} from "@mui/material";
+import { Toolbar, IconButton, Typography, AppBar, Box } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";

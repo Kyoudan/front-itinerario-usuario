@@ -143,7 +143,6 @@ export const CategoriesPage = () => {
             )}
           </div>
         </S.styledDiv>
-        <Footer />
       </S.styledContainer>
     </>
   );
