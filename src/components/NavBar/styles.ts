@@ -63,7 +63,7 @@ export const styledNavBarLeft = styled.div`
 
 export const styledDivInputNavBar = styled.div<IstyledDivInputNavBar>`
   height: 90%;
-  background-color: #ff3d3d;
+  background-color: #d90d0d;
   border-radius: 5px;
   display: flex;
   flex-direction: row;
@@ -96,7 +96,7 @@ export const styledInputNavBar = styled.input`
   font-family: "Montserrat", sans-serif;
 
   &::placeholder {
-    color: #c7c5c5;
+    color: #e6e6e6;
     font-size: 1em;
     font-family: "Montserrat", sans-serif;
   }
