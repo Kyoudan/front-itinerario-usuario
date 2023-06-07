@@ -95,26 +95,6 @@ export const NavBar = () => {
                   placeholder="Procure..."
                 ></S.styledInputNavBar>
               </S.styledDivInputNavBar>
-
-              <Button
-                variant="outlined"
-                sx={{
-                  color: "#fff",
-                }}
-                onClick={() => navigate("/login")}
-              >
-                <Typography sx={{ fontFamily: "Montserrat" }}>login</Typography>
-              </Button>
-
-              <Button
-                variant="Claro"
-                color="primary"
-                onClick={() => navigate("/register")}
-              >
-                <Typography sx={{ fontFamily: "Montserrat" }}>
-                  Criar conta
-                </Typography>
-              </Button>
             </Box>
           </Toolbar>
         </AppBar>
