@@ -12,6 +12,7 @@ export const styledDiv = styled.div<IStyledDiv>`
   align-items: center;
   flex-direction: column;
   user-select: none;
+  pointer-events: none;
   animation: ${({ animation }) =>
     animation && animation === "animation-in"
       ? "screenLoadingAnimationIn 0.3s  ease-in-out forwards"

@@ -3,21 +3,22 @@ export interface IStyledDiv {
   isSearch?: boolean;
 }
 
-export interface IPostAxios {
-  data: {
-    data: IPost[];
-    count: number;
+export interface IPostApollo {
+  getOnePost?: {
+    data: {
+      name: string;
+      description: string;
+      image: string;
+      uuid: string;
+      id: number;
+    };
   };
 }
 
 export interface IPost {
-  id?: number;
   name?: string;
   uuid?: string;
   description?: string;
-  createdAt?: string;
   image?: string;
-  PostTags: {
-    name?: string;
-  };
+  id: number;
 }

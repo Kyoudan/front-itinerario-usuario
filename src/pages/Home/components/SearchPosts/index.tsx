@@ -18,22 +18,38 @@ import {
 import { useAppThemeContext } from "../../../../contexts/ThemeContext";
 import * as S from "./style";
 import { useEffect, useState } from "react";
-import { api } from "../../../../api/api";
-import { IPost, IPostAxios } from "./types";
+import { IPost, IPostApollo } from "./types";
 import ScrollReveal from "scrollreveal";
 import { useNavigate } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
+import { gql, useLazyQuery } from "@apollo/client";
+
+const GET_POST = gql`
+  query obterPosts($find: String!) {
+    getOnePost(find: $find) {
+      data {
+        name
+        uuid
+        id
+        image
+        description
+      }
+    }
+  }
+`;
 
 export const SearchPosts = () => {
   const { themeName } = useAppThemeContext();
   const [activeStep, setActiveStep] = useState<number>(0);
   const [isSearch, setIsSearch] = useState<boolean>(false);
   const [search, setSearch] = useState<string>();
-  const [post, setPost] = useState<IPost[]>();
+  const [post, setPost] = useState<IPost>();
   const [width] = useState<number>(window.innerWidth);
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const Sr = ScrollReveal();
+
+  const [obterPosts, { data }] = useLazyQuery<IPostApollo>(GET_POST);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => {
@@ -51,11 +67,8 @@ export const SearchPosts = () => {
     if (e.keyCode == 13 && search) {
       try {
         setLoading(true);
-        const result: IPostAxios = await api.get(
-          `/postspublic?find=${search}&limit=1`
-        );
+        await obterPosts({ variables: { find: search } });
         setIsSearch(true);
-        setPost(result.data.data);
         setLoading(false);
       } catch (err) {
         console.log(err);
@@ -210,8 +223,16 @@ export const SearchPosts = () => {
     });
   }, []);
 
+  useEffect(() => {
+    console.log(post);
+  }, [post]);
+
+  useEffect(() => {
+    setPost(data?.getOnePost?.data);
+  }, [data]);
+
   return (
-    <S.styledDiv theme={themeName} isSearch={post?.length == 1 ? true : false}>
+    <S.styledDiv theme={themeName} isSearch={post ? true : false}>
       <S.styledLeft className="search">
         <Box className="Box">
           <Stepper activeStep={activeStep} orientation="vertical">
@@ -330,7 +351,7 @@ export const SearchPosts = () => {
         </Box>
       </S.styledLeft>
       <S.styledRight>
-        {post?.length == 1 && (
+        {post && (
           <>
             <Typography
               sx={styledTypographyDefault}
@@ -345,15 +366,15 @@ export const SearchPosts = () => {
             <Card
               sx={{ width: 345, cursor: "pointer" }}
               className="cardPosts"
-              key={post[0].id}
-              onClick={() => navigate(`/postagens/${post[0].uuid}`)}
+              key={post.id}
+              onClick={() => navigate(`/postagens/${post.uuid}`)}
             >
               <CardMedia
                 component="img"
                 height="194"
                 image={
-                  post[0].image
-                    ? post[0].image
+                  post.image
+                    ? post.image
                     : "https://cdn.discordapp.com/attachments/863861085471244288/1107852050131333181/image.png"
                 }
                 alt="Paella dish"
@@ -365,20 +386,20 @@ export const SearchPosts = () => {
                   color={themeName === "dark" ? "#fff" : "#fff"}
                   className="Title"
                 >
-                  {post[0].name}
+                  {post.name}
                 </Typography>
                 <Typography
                   variant="body2"
                   color={themeName === "dark" ? "#fff" : "#fff"}
                   className="Description"
                 >
-                  {post[0].description}
+                  {post.description}
                 </Typography>
               </CardContent>
             </Card>
           </>
         )}
-        {isSearch == true && post?.length == 0 && (
+        {isSearch == true && !post && (
           <Alert
             sx={titleStep}
             variant="outlined"
