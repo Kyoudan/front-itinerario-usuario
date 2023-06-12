@@ -11,6 +11,7 @@ export const useScreenLoadingContext = () => {
 };
 
 export const ScreenLoadingProvider = ({ children }: IProps) => {
+  const [messageError, setMessageError] = useState<string>("");
   const [isScreenLoading, setIsLoadingScreen] = useState<boolean>(false);
   const [screenLoading, setScreenLoading] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(1);
@@ -18,7 +19,6 @@ export const ScreenLoadingProvider = ({ children }: IProps) => {
     "animation-in" | "animation-out"
   >();
   const { themeName } = useAppThemeContext();
-  console.log(progress);
 
   useEffect(() => {
     if (isScreenLoading) {
@@ -46,9 +46,28 @@ export const ScreenLoadingProvider = ({ children }: IProps) => {
     setProgress(1);
   }, []);
 
+  useEffect(() => {
+    if (messageError.length > 4 || messageError.toString().length > 4) {
+      setTimeout(() => {
+        const errorCount = localStorage.getItem("errorcount") as string;
+        localStorage.setItem(
+          "errorcount",
+          `${parseInt(errorCount) + 1}` || "0"
+        );
+        if (isNaN(parseInt(errorCount))) {
+          localStorage.setItem("errorcount", "0");
+        }
+
+        if (parseInt(errorCount) < 3) {
+          location.reload();
+        }
+      }, 6500);
+    }
+  }, [messageError]);
+
   return (
     <ScreenLoadingContext.Provider
-      value={{ isScreenLoading, setIsLoadingScreen }}
+      value={{ isScreenLoading, setIsLoadingScreen, setMessageError }}
     >
       {screenLoading && (
         <S.styledDiv theme={themeName} animation={screenLoadingAnimation}>
@@ -60,6 +79,11 @@ export const ScreenLoadingProvider = ({ children }: IProps) => {
               className="Progress"
             />
           </Box>
+          {messageError && (
+            <Typography className="Error">
+              Error: {messageError.toString()}
+            </Typography>
+          )}
         </S.styledDiv>
       )}
       {children}

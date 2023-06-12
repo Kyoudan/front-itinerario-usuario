@@ -38,7 +38,7 @@ export const useAppCategoriesContext = () => {
 
 export const AppCategoriesProvider = ({ children }: IProps) => {
   const [categories, setCategories] = useState<ITags[]>([]);
-  const { setIsLoadingScreen } = useScreenLoadingContext();
+  const { setIsLoadingScreen, setMessageError } = useScreenLoadingContext();
 
   const getAllCategories = async () => {
     try {
@@ -46,7 +46,9 @@ export const AppCategoriesProvider = ({ children }: IProps) => {
       const result: ITagsAxios = await api.get("/posttags");
       setCategories(result.data.data);
       setIsLoadingScreen(false);
-    } catch {}
+    } catch (err: any) {
+      setMessageError(err);
+    }
   };
 
   useEffect(() => {

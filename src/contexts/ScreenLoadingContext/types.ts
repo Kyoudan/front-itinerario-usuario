@@ -7,6 +7,7 @@ export interface IProps {
 export interface IScreenLoadingContext {
   isScreenLoading: boolean;
   setIsLoadingScreen: Dispatch<SetStateAction<boolean>>;
+  setMessageError: Dispatch<SetStateAction<string>>;
 }
 
 export interface IStyledDiv {

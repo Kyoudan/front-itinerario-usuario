@@ -53,4 +53,14 @@ export const styledDiv = styled.div<IStyledDiv>`
       scale: 1.2;
     }
   }
+
+  .Error {
+    font-size: 1rem;
+    font-weight: 600;
+    color: ${({ theme }) => (theme === "dark" ? "#fff" : "#1c1c1c")};
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.1rem;
+    text-align: center;
+    margin-top: 20px;
+  }
 `;
