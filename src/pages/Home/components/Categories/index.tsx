@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { useAppThemeContext } from "../../../../contexts/ThemeContext";
 import * as S from "./style";
 import Draggable from "react-draggable";
@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Categories = () => {
   const { themeName } = useAppThemeContext();
-  const divCenter = useRef<HTMLElement>(null);
+  const divCenter = useRef<HTMLDivElement>(null);
   const { categories, getAllCategories } = useAppCategoriesContext();
   const [animate, setAnimate] = useState<"animate-in" | "animate-out">();
   const [selectItem, setSelectItem] = useState<string>();

@@ -30,6 +30,7 @@ export const Posts = () => {
   const [loading, setLoading] = useState(false);
 
   const getAllPosts = async () => {
+    console.log(countPosts, loading)
     try {
       const result: IAxiosPosts = await api.get("/postspublic");
       console.log(result);

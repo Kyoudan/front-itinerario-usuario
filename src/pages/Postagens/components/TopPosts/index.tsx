@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./style.css";
+// @ts-ignore
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { Skeleton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +18,7 @@ import { useScreenLoadingContext } from "../../../../contexts/ScreenLoadingConte
 export const TopPosts = () => {
   const { themeName } = useAppThemeContext();
   const [featuredPosts, setFeaturedPosts] = useState<IPosts[]>([]);
-  const { setIsLoadingScreen } = useScreenLoadingContext();
+  const { setIsLoadingScreen, setMessageError } = useScreenLoadingContext();
   const navigate = useNavigate();
 
   const getFeaturedPosts = async () => {
@@ -27,8 +28,11 @@ export const TopPosts = () => {
       console.log(result.data.data);
       setFeaturedPosts(result.data.data);
       setIsLoadingScreen(false);
-    } catch (err) {
+    } catch (err: any) {
       console.log(err);
+      setMessageError(
+        err.message || err.response || "Erro ao carregar destaques"
+      );
     }
   };
 
