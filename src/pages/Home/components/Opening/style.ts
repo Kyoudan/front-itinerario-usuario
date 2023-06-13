@@ -12,7 +12,7 @@ export const styledDiv = styled.div<IStyledDiv>`
   cursor: default;
   position: relative;
   overflow-x: hidden;
-  
+
   @media (max-width: 690px) {
     height: 500px;
   }
@@ -74,6 +74,8 @@ export const styledTitleLogo = styled.h1<IStyledStrings>`
   font-family: "Bebas neue";
   z-index: 3;
   color: ${({ theme }) => (theme === "dark" ? "#cccccc" : "#fff")};
+  -webkit-text-stroke: ${({ theme }) =>
+    theme === "dark" ? "1px #1c1c1c" : "1px #1c1c1c"};
   @media (max-width: 680px) {
     font-size: 10em;
   }
@@ -89,6 +91,8 @@ export const styledTitleLogoDistorted = styled.h1<IStyledStrings>`
   width: 110px;
   font-size: 10em;
   font-family: "Bebas neue";
+  -webkit-text-stroke: ${({ theme }) =>
+    theme === "dark" ? "1px #1c1c1c" : "1px #1c1c1c"};
   transform: scaleX(2);
   text-align: center;
   overflow: hidden;
