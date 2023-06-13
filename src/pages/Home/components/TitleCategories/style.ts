@@ -41,26 +41,25 @@ export const styledDiv = styled.div<IStyledDiv>`
 
     @media (max-width: 768px) {
       font-size: 1.5em;
-      margin: 0;
 
       .Icon1 {
         margin-left: 10px;
         font-size: 2em;
         color: ${({ theme }) => (theme === "dark" ? "#fff" : "#1c1c1c")};
         position: absolute;
-        left: -0px;
+        left: 10px;
         top: 50px;
         margin: 0px 0px;
+        display: none;
       }
 
       .Icon2 {
         margin-left: 10px;
-        font-size: 2em;
+        font-size: 1.3em;
         color: ${({ theme }) => (theme === "dark" ? "#fff" : "#1c1c1c")};
         position: absolute;
-        right: -10px;
-        top: auto;
-        margin: 0px 0px;
+        right: 45%;
+        top: 80px;
       }
     }
   }

@@ -91,8 +91,6 @@ export const styledTitleLogoDistorted = styled.h1<IStyledStrings>`
   width: 110px;
   font-size: 10em;
   font-family: "Bebas neue";
-  -webkit-text-stroke: ${({ theme }) =>
-    theme === "dark" ? "1px #1c1c1c" : "1px #1c1c1c"};
   transform: scaleX(2);
   text-align: center;
   overflow: hidden;
@@ -100,6 +98,11 @@ export const styledTitleLogoDistorted = styled.h1<IStyledStrings>`
   color: ${({ theme }) => (theme === "dark" ? "#cccccc" : "#fff")};
   animation: moveWords 20s ease alternate infinite;
   transition: 0.5s ease;
+
+  span {
+    -webkit-text-stroke: ${({ theme }) =>
+      theme === "dark" ? "1px #1c1c1c" : "1px #1c1c1c"};
+  }
 
   @keyframes moveWords {
     0% {

@@ -18,7 +18,7 @@ export const Opening = () => {
         <S.padding />
         <S.styledTitleLogo theme={themeName}>S</S.styledTitleLogo>
         <S.styledTitleLogoDistorted theme={themeName}>
-          E
+          <span>E</span>
         </S.styledTitleLogoDistorted>
         <S.styledTitleLogo theme={themeName}>LIGA </S.styledTitleLogo>
       </S.styledDivTop>
