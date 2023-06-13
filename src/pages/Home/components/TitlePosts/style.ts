@@ -60,7 +60,7 @@ export const styledDiv = styled.div<IStyledDiv>`
         color: ${({ theme }) => (theme === "dark" ? "#fff" : "#1c1c1c")};
         position: absolute;
         right: 45%;
-        top: 30px;
+        top: 50px;
       }
     }
   }
