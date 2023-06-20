@@ -17,6 +17,18 @@ export const Conteudo = ({ post, theme }: IProps) => {
                   {item.content}
                 </S.styledText>
               )}
+              {item.type === "video" && (
+                <iframe
+                  width="100%"
+                  height="400"
+                  src={item.content}
+                  frameBorder="0"
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  style={{ marginBottom: "50px", marginTop: "50px" }}
+                ></iframe>
+              )}
             </>
           ))}
         </div>
