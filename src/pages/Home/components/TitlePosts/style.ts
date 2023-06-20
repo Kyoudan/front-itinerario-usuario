@@ -7,7 +7,7 @@ export const styledDiv = styled.div<IStyledDiv>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => (theme === "dark" ? "1c1c1c" : "#fff")};
+  background-color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
 
   h1 {
     font-size: 2em;

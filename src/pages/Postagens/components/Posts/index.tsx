@@ -17,6 +17,7 @@ import { api } from "../../../../api/api";
 import { IAxiosPosts, IPosts } from "./types";
 import { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
+import { PropagateLoader } from "react-spinners";
 
 export const Posts = () => {
   const { themeName } = useAppThemeContext();
@@ -30,14 +31,17 @@ export const Posts = () => {
   const [loading, setLoading] = useState(false);
 
   const getAllPosts = async () => {
-    console.log(countPosts, loading)
+    console.log(countPosts, loading);
     try {
+      setLoading(true);
       const result: IAxiosPosts = await api.get("/postspublic");
       console.log(result);
       setPosts(result.data.data);
       setCountPosts(result.data.count);
+      setLoading(false);
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
   };
 
@@ -65,6 +69,7 @@ export const Posts = () => {
       }
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
   };
 
@@ -135,17 +140,9 @@ export const Posts = () => {
                 {item.description}
               </Typography>
             </CardContent>
-            <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton aria-label="share">
-                <ShareIcon />
-              </IconButton>
-            </CardActions>
           </Card>
         ))
-      ) : (
+      ) : !loading ? (
         <Box
           sx={{
             height: "450px",
@@ -171,6 +168,20 @@ export const Posts = () => {
             Nenhum resultado!!
           </Alert>
         </Box>
+      ) : (
+        <PropagateLoader
+          color={themeName === "dark" ? "#fff" : "#a60303"}
+          speedMultiplier={0.8}
+          style={{
+            width: "80%",
+            height: "45px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            borderRadius: "5px",
+          }}
+        />
       )}
     </S.styledDiv>
   );

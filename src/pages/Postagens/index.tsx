@@ -16,7 +16,7 @@ export const Postagens = () => {
       <TopPosts />
       <div className="DivTitlePostsContainer">
         <div className="DivTitlePosts">
-          <Typography className="TitlePosts">Postagens</Typography>
+          <Typography className="TitlePosts">Todas as postagens:</Typography>
         </div>
       </div>
       <Posts />

@@ -7,7 +7,7 @@ export const styledDiv = styled.div<IStyledDiv>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => (theme === "dark" ? "1c1c1c" : "#fff")};
+  background-color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
 
   h1 {
     font-size: 2em;
@@ -18,6 +18,7 @@ export const styledDiv = styled.div<IStyledDiv>`
     max-width: 800px;
     text-align: center;
     margin: 0px 10px;
+
 
     .Icon1 {
       margin-left: 10px;

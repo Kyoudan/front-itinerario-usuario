@@ -42,10 +42,6 @@ export const TopPosts = () => {
 
   return (
     <S.styledDiv>
-      <S.styledLeft theme={themeName}>
-        <Typography className="Text">Conheça nossas</Typography>
-        <Typography className="Text">principais postagens</Typography>
-      </S.styledLeft>
       <S.styledRight theme={themeName}>
         <Swiper
           spaceBetween={30}

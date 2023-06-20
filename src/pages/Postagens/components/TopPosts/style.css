@@ -1,7 +1,6 @@
 .swiper {
-  width: 90%;
+  width: 100%;
   height: 90%;
-  border-radius: 20px;
 }
 
 .swiper-slide {
@@ -16,8 +15,7 @@
 .swiper-slide img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
 .autoplay-progress {
@@ -55,6 +53,14 @@
 .swiper-pagination-bullet {
   color: #a60303;
   --swiper-theme-color: #a60303;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  background-color: #a60303;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: #fff;
 }
 
 @media (max-width: 400px) {

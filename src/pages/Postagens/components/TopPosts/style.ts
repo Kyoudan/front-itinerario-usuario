@@ -18,6 +18,8 @@ export const styledSlider = styled.div`
     color: #fff;
     font-family: "Montserrat", sans-serif;
     font-size: 1.5em;
+    pointer-events: none;
+    user-select: none;
     @media (max-width: 1078px) {
       font-size: 1.2em;
       bottom: 60px;
@@ -37,6 +39,8 @@ export const styledSlider = styled.div`
     color: #fff;
     font-family: "Montserrat";
     font-size: 0.8em;
+    pointer-events: none;
+    user-select: none;
 
     @media (max-width: 1078px) {
       font-size: 0.8em;
@@ -75,7 +79,6 @@ export const styledDiv = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 40px;
     row-gap: 20px;
   }
 `;
@@ -108,12 +111,11 @@ export const styledLeft = styled.div<IStyledLeft>`
 `;
 
 export const styledRight = styled.div<IStyledRight>`
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
 
   @media (max-width: 900px) {
     width: 100%;
