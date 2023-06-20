@@ -10,7 +10,15 @@ export const Conteudo = ({ post, theme }: IProps) => {
           {post?.PostContent.map((item) => (
             <>
               {item.type === "image" && (
-                <img src={item.content} className="ImagemConteudo" />
+                <>
+                  <S.styledImage
+                    src={item.content}
+                    reference={item.reference}
+                  />
+                  {item.reference && (
+                    <S.styledReference>{item.reference}</S.styledReference>
+                  )}
+                </>
               )}{" "}
               {item.type === "text" && (
                 <S.styledText theme={theme} size={item.size}>

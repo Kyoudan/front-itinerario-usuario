@@ -5,13 +5,9 @@ import {
   CardMedia,
   CardContent,
   Typography,
-  CardActions,
-  IconButton,
   Alert,
   Box,
 } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import { useNavigate, useLocation } from "react-router-dom";
 import { api } from "../../../../api/api";
 import { IAxiosPosts, IPosts } from "./types";

@@ -52,4 +52,5 @@ export interface IPostContent {
   order: number;
   type: string;
   size: number;
+  reference: string;
 }

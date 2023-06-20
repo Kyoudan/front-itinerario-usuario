@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
-import { IStyledDiv, IStyledText } from "./types";
+import { IStyledDiv, IStyledImage, IStyledText } from "./types";
 
 export const styledDiv = styled.div<IStyledDiv>`
   width: 100%;
   display: flex;
   justify-content: center;
   background-color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
-
-
 `;
 
 export const styledContent = styled.div`
@@ -22,13 +20,6 @@ export const styledContent = styled.div`
   row-gap: 20px;
 
   .ImagemPostagem {
-    max-width: 98%;
-    height: auto;
-    border-radius: 10px;
-    margin: 30px 0px;
-  }
-
-  .ImagemConteudo {
     max-width: 98%;
     height: auto;
     border-radius: 10px;
@@ -52,4 +43,29 @@ export const styledText = styled.p<IStyledText>`
   margin-bottom: 10px;
   line-height: ${({ size }) =>
     size && size > 1.7 ? (size > 2.5 ? "44px" : "33px") : "25px"};
+`;
+
+export const styledImage = styled.img<IStyledImage>`
+  max-width: 98%;
+  height: auto;
+  border-radius: ${({ reference }) =>
+    !reference ? "10px" : "10px 10px 0px 0px"};
+  margin-top: 30px;
+  margin-bottom: ${({ reference }) => (!reference ? "30px" : "0px")};
+`;
+
+export const styledReference = styled.a<IStyledImage>`
+  width: 98%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0f0f0f;
+  visibility: visible;
+  margin: 0px 0px 30px 0px;
+  border-radius: 0px 0px 10px 10px;
+  text-align: center;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  pointer-events: none;
 `;

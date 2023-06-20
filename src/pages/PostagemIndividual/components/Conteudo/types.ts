@@ -13,3 +13,7 @@ export interface IStyledText {
   theme?: "dark" | "light";
   size?: number;
 }
+
+export interface IStyledImage {
+  reference?: string;
+}
