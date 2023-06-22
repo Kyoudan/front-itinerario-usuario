@@ -49,7 +49,7 @@ export const RoutesComponent = () => {
           ></Route>
 
           <Route
-            path="/podcasts"
+            path="/podcasts/:uuid"
             element={
               <AppCategoriesProvider>
                 <PodcastsIndividual />

@@ -2,9 +2,12 @@ import styled from "@emotion/styled";
 import { IStyledDiv } from "./types";
 
 export const styledDiv = styled.div<IStyledDiv>`
-  background-color: ${({ theme }) => (theme === "dark" ? "#fff" : "#1c1c1c")};
+  background-color: #1c1c1c;
   width: 100%;
   height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .Container {
     width: 60%;
@@ -15,12 +18,19 @@ export const styledDiv = styled.div<IStyledDiv>`
     row-gap: 10px;
     flex-direction: column;
     margin-left: 5em;
+    border-bottom: 1px solid #a60303;
+
+    @media (max-width: 850px) {
+      width: 90%;
+      margin-left: 0em;
+      margin: auto;
+    }
   }
 
   .Title {
     font-size: 1.8em;
     font-weight: 600;
-    color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
+    color: #fff;
     font-family: "Montserrat", sans-serif;
   }
 
@@ -28,7 +38,7 @@ export const styledDiv = styled.div<IStyledDiv>`
     max-width: 600px;
     font-size: 1em;
     font-weight: 600;
-    color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#c2c2c2")};
+    color: #fff;
     font-family: "Montserrat", sans-serif;
     text-align: justify;
   }
@@ -39,6 +49,18 @@ export const styledDiv = styled.div<IStyledDiv>`
     flex-direction: row;
     column-gap: 25px;
     margin-top: 60px;
+
+    @media (max-width: 850px) {
+      flex-direction: column;
+      row-gap: 20px;
+    }
+
+    .divAudioProgress {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      column-gap: 25px;
+    }
   }
 
   .Progress {
@@ -50,7 +72,7 @@ export const styledDiv = styled.div<IStyledDiv>`
     width: 100px;
   }
   .Icons {
-    color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
+    color: #fff;
   }
 
   audio {
@@ -62,7 +84,7 @@ export const styledDiv = styled.div<IStyledDiv>`
 
 export const styledButton = styled.button`
   width: 50px;
-  height: 40px;
+  height: 50px;
   background-color: #a60303;
   border: none;
   border-radius: 50%;
@@ -72,4 +94,9 @@ export const styledButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 850px) {
+    width: 60px;
+    height: 60px;
+  }
 `;

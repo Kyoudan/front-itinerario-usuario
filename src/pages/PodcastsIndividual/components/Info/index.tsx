@@ -1,9 +1,13 @@
+import { useAppThemeContext } from "../../../../contexts/ThemeContext";
 import * as S from "./style";
+import { IProps } from "./types";
 
-export const Info = () => {
+export const Info = ({ data }: IProps) => {
+  const { themeName } = useAppThemeContext();
+
   return (
-    <S.styledDiv>
-      <h1>oi</h1>
+    <S.styledDiv theme={themeName}>
+      <p className="Details">{data?.details}</p>
     </S.styledDiv>
   );
 };

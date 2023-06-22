@@ -6,8 +6,9 @@ import VolumeUp from "@mui/icons-material/VolumeUp";
 import { useEffect, useRef, useState } from "react";
 import { useAppThemeContext } from "../../../../contexts/ThemeContext";
 import doja from "../../../../assets/podcasts/doja.mp3";
+import { IProps } from "./types";
 
-export const Audio = () => {
+export const Audio = ({ data }: IProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [volume, setVolume] = useState<number>(30);
   const [audioPlaying, setAudioPlaying] = useState<boolean>(false);
@@ -87,15 +88,10 @@ export const Audio = () => {
   return (
     <S.styledDiv theme={themeName}>
       <div className="Container">
-        <h1 className="Title">Falando sobre as inteligencias artificiais</h1>
-        <p className="Description">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          Necessitatibus, possimus dolores! Facilis dolor cumque cupiditate. Ut,
-          nesciunt eos. Vel, animi esse ratione officia ex iste veniam
-          exercitationem corporis officiis ducimus!
-        </p>
+        <h1 className="Title">{data?.title}</h1>
+        <p className="Description">{data?.description}</p>
         <audio
-          src={doja}
+          src={data?.audio}
           controls={audioPlaying}
           className="Audio"
           ref={audioRef}
@@ -103,27 +99,36 @@ export const Audio = () => {
           Tu navegador no soporta la etiqueta de audio.
         </audio>
         <div className="divAudio">
-          <S.styledButton onClick={toggleAudio}>
-            {audioPlaying ? <FaPause /> : <FaPlay />}
-          </S.styledButton>
-          <Slider
-            size="small"
-            value={currentTime}
-            min={0}
-            max={duration ? duration : 100}
-            onChange={handleProgressBarChange}
-            valueLabelDisplay="auto"
-          />
-          <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
-            <VolumeDown className="Icons" />
+          <div className="divAudioButton">
+            <S.styledButton onClick={toggleAudio}>
+              {audioPlaying ? <FaPause /> : <FaPlay />}
+            </S.styledButton>
+          </div>
+          <div className="divAudioProgress">
             <Slider
-              aria-label="Volume"
-              value={volume}
-              onChange={handleChange}
-              className="Volume"
+              size="small"
+              value={currentTime}
+              min={0}
+              max={duration ? duration : 100}
+              onChange={handleProgressBarChange}
+              valueLabelDisplay="auto"
             />
-            <VolumeUp className="Icons" />
-          </Stack>
+            <Stack
+              spacing={2}
+              direction="row"
+              sx={{ mb: 1 }}
+              alignItems="center"
+            >
+              <VolumeDown className="Icons" />
+              <Slider
+                aria-label="Volume"
+                value={volume}
+                onChange={handleChange}
+                className="Volume"
+              />
+              <VolumeUp className="Icons" />
+            </Stack>
+          </div>
         </div>
       </div>
     </S.styledDiv>
