@@ -33,9 +33,43 @@ export const styledDiv = styled.div<IStyledDiv>`
     text-align: justify;
   }
 
-  audio {
-    margin-top: 25px;
-    width: 600px;
-    display: block;
+  .divAudio {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    column-gap: 25px;
+    margin-top: 60px;
   }
+
+  .Progress {
+    width: 50%;
+    height: 11px;
+  }
+
+  .Volume {
+    width: 100px;
+  }
+  .Icons {
+    color: ${({ theme }) => (theme === "dark" ? "#1c1c1c" : "#fff")};
+  }
+
+  audio {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+  }
+`;
+
+export const styledButton = styled.button`
+  width: 50px;
+  height: 40px;
+  background-color: #a60303;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
