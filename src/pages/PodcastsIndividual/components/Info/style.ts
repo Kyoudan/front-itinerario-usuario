@@ -4,7 +4,8 @@ import { IStyledDiv } from "./types";
 export const styledDiv = styled.div<IStyledDiv>`
   width: 100%;
   height: auto;
-  background-color: #1c1c1c;
+  background-color: ${({ theme }) =>
+    theme === "dark" ? "#1c1c1c" : "#FFFFFF"};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +16,7 @@ export const styledDiv = styled.div<IStyledDiv>`
 
   .Details {
     font-size: 1.3em;
-    color: #fff;
+    color: ${({ theme }) => (theme === "dark" ? "#fff" : "#000")};
     font-family: "Montserrat", sans-serif;
     margin-top: 3.5em;
     margin-left: 3.5em;

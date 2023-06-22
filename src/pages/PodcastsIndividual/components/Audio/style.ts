@@ -2,7 +2,8 @@ import styled from "@emotion/styled";
 import { IStyledDiv } from "./types";
 
 export const styledDiv = styled.div<IStyledDiv>`
-  background-color: #1c1c1c;
+  background-color: ${({ theme }) =>
+    theme === "dark" ? "#1c1c1c" : "#FFFFFF"};
   width: 100%;
   height: 300px;
   display: flex;
@@ -30,7 +31,7 @@ export const styledDiv = styled.div<IStyledDiv>`
   .Title {
     font-size: 1.8em;
     font-weight: 600;
-    color: #fff;
+    color: ${({ theme }) => (theme === "dark" ? "#fff" : "#000")};
     font-family: "Montserrat", sans-serif;
   }
 
@@ -38,7 +39,7 @@ export const styledDiv = styled.div<IStyledDiv>`
     max-width: 600px;
     font-size: 1em;
     font-weight: 600;
-    color: #fff;
+    color: ${({ theme }) => (theme === "dark" ? "#fff" : "#000")};
     font-family: "Montserrat", sans-serif;
     text-align: justify;
   }
@@ -72,7 +73,7 @@ export const styledDiv = styled.div<IStyledDiv>`
     width: 100px;
   }
   .Icons {
-    color: #fff;
+    color: ${({ theme }) => (theme === "dark" ? "#fff" : "#000")};
   }
 
   audio {

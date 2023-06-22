@@ -5,7 +5,6 @@ import VolumeDown from "@mui/icons-material/VolumeDown";
 import VolumeUp from "@mui/icons-material/VolumeUp";
 import { useEffect, useRef, useState } from "react";
 import { useAppThemeContext } from "../../../../contexts/ThemeContext";
-import doja from "../../../../assets/podcasts/doja.mp3";
 import { IProps } from "./types";
 
 export const Audio = ({ data }: IProps) => {
@@ -14,10 +13,10 @@ export const Audio = ({ data }: IProps) => {
   const [audioPlaying, setAudioPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [progress, setProgress] = useState<number>(0);
   const { themeName } = useAppThemeContext();
 
   const handleChange = (event: Event, newValue: number | number[]) => {
+    console.log(event);
     setVolume(newValue as number);
     const audio = audioRef.current as HTMLAudioElement;
     if (typeof newValue != "number") return;
@@ -52,6 +51,7 @@ export const Audio = ({ data }: IProps) => {
     event: Event,
     newValue: number | number[]
   ) => {
+    console.log(event);
     const audio = audioRef.current as HTMLAudioElement;
     if (typeof newValue != "number") return;
     audio.currentTime = newValue;
