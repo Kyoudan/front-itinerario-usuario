@@ -79,7 +79,7 @@ export const Audio = ({ data }: IProps) => {
   useEffect(() => {
     setTimeout(() => {
       const audio = audioRef.current as HTMLAudioElement;
-      setDuration(audio.duration);
+      setDuration(Math.ceil(audio.duration));
     }, 3000);
   }, [audioRef]);
 
@@ -105,7 +105,7 @@ export const Audio = ({ data }: IProps) => {
           <div className="divAudioProgress">
             <Slider
               size="small"
-              value={currentTime}
+              value={Math.ceil(currentTime)}
               min={0}
               max={duration ? duration : 500}
               onChange={handleProgressBarChange}

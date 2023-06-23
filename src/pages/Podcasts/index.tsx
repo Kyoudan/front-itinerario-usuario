@@ -3,10 +3,15 @@ import * as S from "./style";
 import { FaMusic } from "react-icons/fa";
 import { datas } from "../../assets/podcasts/datas";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const Podcasts = () => {
   const { themeName } = useAppThemeContext();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Podcasts | Se liga na mídia";
+  }, []);
 
   return (
     <S.styledDiv theme={themeName}>

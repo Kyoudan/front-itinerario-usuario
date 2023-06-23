@@ -64,6 +64,10 @@ export const CategoriesPage = () => {
     }, 700);
   }, [name]);
 
+  useEffect(() => {
+    document.title = "Categorias | Se liga na mídia";
+  }, []);
+
   return (
     <>
       <ShortcutMenu />

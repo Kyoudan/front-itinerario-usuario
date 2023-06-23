@@ -31,6 +31,7 @@ export const PostagemIndividual = () => {
       const result: IPostAxios = await api.get(`/post/${uuid}`);
       setPost(result.data);
       setIsLoadingScreen(false);
+      document.title = result.data.name;
     } catch (err) {
       console.log(err);
     }
