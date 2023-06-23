@@ -77,12 +77,10 @@ export const Audio = ({ data }: IProps) => {
   }, [audioPlaying]);
 
   useEffect(() => {
-    console.log("Oi", currentTime);
-  }, [currentTime]);
-
-  useEffect(() => {
-    const audio = audioRef.current as HTMLAudioElement;
-    setDuration(audio.duration);
+    setTimeout(() => {
+      const audio = audioRef.current as HTMLAudioElement;
+      setDuration(audio.duration);
+    }, 3000);
   }, [audioRef]);
 
   return (
@@ -109,7 +107,7 @@ export const Audio = ({ data }: IProps) => {
               size="small"
               value={currentTime}
               min={0}
-              max={duration ? duration : 100}
+              max={duration ? duration : 500}
               onChange={handleProgressBarChange}
               valueLabelDisplay="auto"
             />
