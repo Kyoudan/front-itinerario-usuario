@@ -6,6 +6,7 @@ import { CategoriesPage } from "../pages/Categories";
 import { Postagens } from "../pages/Postagens";
 import { PostagemIndividual } from "../pages/PostagemIndividual";
 import { PodcastsIndividual } from "../pages/PodcastsIndividual";
+import { Podcasts } from "../pages/Podcasts";
 
 export const RoutesComponent = () => {
   return (
@@ -44,6 +45,15 @@ export const RoutesComponent = () => {
             element={
               <AppCategoriesProvider>
                 <PostagemIndividual />
+              </AppCategoriesProvider>
+            }
+          ></Route>
+
+          <Route
+            path="/podcasts/"
+            element={
+              <AppCategoriesProvider>
+                <Podcasts />
               </AppCategoriesProvider>
             }
           ></Route>
