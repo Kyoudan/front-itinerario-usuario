@@ -165,6 +165,24 @@ export const DrawerComponent = ({ isDrawer, setIsDrawer }: IProps) => {
                     <ListItemText />
                   </ListItemButton>
                 </ListItem>
+                <Divider />
+                <ListItem disablePadding>
+                  <ListItemButton onClick={() => navigate("/podcasts")}>
+                    <ListItemIcon>
+                      <Typography
+                        sx={{
+                          color: "secondary.dark",
+                          fontFamily: "Montserrat",
+                          fontSize: "1.5em",
+                        }}
+                      >
+                        Podcasts
+                      </Typography>
+                    </ListItemIcon>
+                    <ListItemText />
+                  </ListItemButton>
+                </ListItem>
+                <Divider />
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
