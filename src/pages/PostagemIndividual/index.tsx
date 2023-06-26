@@ -11,6 +11,7 @@ import "./style.css";
 import { useScreenLoadingContext } from "../../contexts/ScreenLoadingContext/ScreenLoadingContext";
 import { UpButton } from "../../components/UpButton";
 import { ShortcutMenu } from "../../components/ShortcutMenu";
+import Cookies from "js-cookie";
 
 export const PostagemIndividual = () => {
   const [post, setPost] = useState<IPost>();
@@ -32,6 +33,13 @@ export const PostagemIndividual = () => {
       setPost(result.data);
       setIsLoadingScreen(false);
       document.title = result.data.name;
+
+      if(Cookies.get(result.data.postTags.name)){
+        Cookies.set(result.data.postTags.name, `${Number(Cookies.get(result.data.postTags.name)) + 1}`);
+      } else {
+        Cookies.set(result.data.postTags.name, "1");
+      }
+
     } catch (err) {
       console.log(err);
     }

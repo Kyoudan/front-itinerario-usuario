@@ -20,7 +20,7 @@ interface ITagsAxios {
 }
 
 interface ITags {
-  name?: string;
+  name: string;
   createdAt?: string;
   id?: number;
 }

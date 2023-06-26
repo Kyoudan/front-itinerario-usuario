@@ -22,7 +22,7 @@ export const Postagens = () => {
       <TopPosts />
       <div className="DivTitlePostsContainer">
         <div className="DivTitlePosts">
-          <Typography className="TitlePosts">Recomendações:</Typography>
+          <Typography className="TitlePosts">Sugestões:</Typography>
         </div>
       </div>
       <Recommendations />
